@@ -2,12 +2,12 @@ import json
 import sys
 
 def getKeyframes(inp, header, keys):
-    ret   = []
-    start = inp.find(header)
+    keyframes = []
+    start     = inp.find(header)
 
     if (start == -1):
         print "No match"
-        return ret
+        return keyframes
 
     lines = inp[start:].splitlines()[1:]
 
@@ -17,15 +17,15 @@ def getKeyframes(inp, header, keys):
         if line == "":
             break
 
-        items = line.split(" ")
-        data  = {}
+        items    = line.split(" ")
+        keyframe = {}
 
         for idx, key in enumerate(keys):
-            data[key] = float(items[idx])
+            keyframe[key] = float(items[idx])
 
-        ret.append(data)
+        keyframes.append(keyframe)
 
-    return ret
+    return keyframes
 
 def convert(inp, outp):
     infile = open(inp, "r")
