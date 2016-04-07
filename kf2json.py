@@ -9,7 +9,7 @@ def getKeyframes(inp, header, keys):
         print "No match"
         return keyframes
 
-    lines = inp[start:].splitlines()[1:]
+    lines = inp[start:].splitlines()[2:]
 
     for line in lines:
         line = line.strip()
@@ -33,8 +33,8 @@ def convert(inp, outp):
     infile.close()
 
     jsonData = {
-        "positions": getKeyframes(text, "Frame X", ["t", "x", "y"]),
-        "sizes":     getKeyframes(text, "Frame Size", ["t", "size"])
+        "positions": getKeyframes(text, "Transform Position", ["t", "x", "y"]),
+        "sizes":     getKeyframes(text, "Transform Size", ["t", "size"])
     }
 
     outfile = open(outp, "w")
