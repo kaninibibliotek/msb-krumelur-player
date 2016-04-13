@@ -32,7 +32,7 @@ function draw(dt) {
   }
 }
 
-var rate = 1000/30;
+var rate = 1000/60;
 
 setInterval(function() {
   draw(rate);
@@ -55,7 +55,7 @@ request.open('GET', 'http://localhost:3000/behaviors/anim2.json', true);
 var intervalId = setInterval(function() {
   request.open('GET', 'http://localhost:3000/behaviors/anim1.json', true);
 
-  if (krumelurer.length >= 20) {
+  if (krumelurer.length >= 100) {
     clearInterval(intervalId);
   }
-}, 1000);
+}, 100);
