@@ -10,7 +10,7 @@ Krumelur.prototype.reset = function() {
   this.time = 0;
 };
 
-Krumelur.prototype.getStateAt = function(dt) {
+Krumelur.prototype.update = function(dt) {
   this.time += dt;
 
   var position = animationPositionAtTime(this.animation, this.time);

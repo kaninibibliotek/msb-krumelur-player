@@ -13,7 +13,7 @@ function draw(dt) {
   var state;
 
   for (var i = 0; i < krumelurer.length; i++) {
-    state = krumelurer[i].getStateAt(dt);
+    state = krumelurer[i].update(dt);
 
     ctx.save();
 
@@ -32,8 +32,7 @@ function draw(dt) {
   }
 }
 
-var rate     = 1000/30;
-var duration = 3000;
+var rate = 1000/30;
 
 setInterval(function() {
   draw(rate);
