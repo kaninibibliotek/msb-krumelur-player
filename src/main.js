@@ -4,13 +4,11 @@ var ctx = canvas.getContext('2d');
 var krumelurer = [];
 
 function addKrumelur(json) {
-  console.log("adding krumelur");
-
   krumelurer.push(new Krumelur('../images/bros.jpg', JSON.parse(json)));
 }
 
 function draw(dt) {
-  ctx.clearRect(0, 0, 800, 600);
+  ctx.clearRect(0, 0, 3500, 1000);
 
   var state;
 
@@ -19,15 +17,15 @@ function draw(dt) {
 
     ctx.save();
 
-    ctx.translate(state.x + state.size / 2, state.y + state.size / 2);
+    ctx.translate(state.x + state.scale / 2, state.y + state.scale / 2);
     ctx.rotate(state.rotation / 180 * Math.PI);
 
     ctx.drawImage(
       krumelurer[i].image,
-      -state.size / 2,
-      -state.size / 2,
-      state.size,
-      state.size
+      -state.scale / 2,
+      -state.scale / 2,
+      state.scale,
+      state.scale
     );
 
     ctx.restore();
@@ -53,8 +51,12 @@ request.onreadystatechange = function() {
   }
 };
 
-request.open('GET', 'http://localhost:3000/behaviors/anim1.json', true);
+request.open('GET', 'http://localhost:3000/behaviors/anim2.json', true);
 
-setTimeout(function() {
-  request.open('GET', 'http://localhost:3000/behaviors/anim2.json', true);
-}, 2000);
+var intervalId = setInterval(function() {
+  request.open('GET', 'http://localhost:3000/behaviors/anim1.json', true);
+
+  if (krumelurer.length >= 20) {
+    clearInterval(intervalId);
+  }
+}, 1000);

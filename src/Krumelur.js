@@ -17,7 +17,7 @@ Krumelur.prototype.getStateAt = function(dt) {
   var state = {
     x:        position.x,
     y:        position.y,
-    size:     animationSizeAtTime(this.animation, this.time),
+    scale:    animationScaleAtTime(this.animation, this.time),
     rotation: animationRotationAtTime(this.animation, this.time)
   };
 

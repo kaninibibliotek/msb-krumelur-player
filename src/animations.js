@@ -36,17 +36,17 @@ var animationPositionAtTime = function(animation, time) {
   };
 };
 
-var animationSizeAtTime = function(animation, time) {
-  var sizes = eventsSurrounding(animation.sizes, time);
+var animationScaleAtTime = function(animation, time) {
+  var scales = eventsSurrounding(animation.scales, time);
 
-  if (!sizes.right) {
-    return sizes.left.size;
+  if (!scales.right) {
+    return scales.left.scale;
   }
 
-  var dt = sizes.right.t - sizes.left.t;
-  var ds = sizes.right.size - sizes.left.size;
+  var dt = scales.right.t - scales.left.t;
+  var ds = scales.right.scale - scales.left.scale;
 
-  return sizes.left.size + (ds / dt) * (time - sizes.left.t);
+  return scales.left.scale + (ds / dt) * (time - scales.left.t);
 };
 
 var animationRotationAtTime = function(animation, time) {

@@ -17,7 +17,7 @@ def getKeyframes(inp, header, keys):
         if line == "":
             break
 
-        items    = line.split(" ")
+        items    = line.split()
         keyframe = {}
 
         for idx, key in enumerate(keys):
@@ -33,8 +33,9 @@ def convert(inp, outp):
     infile.close()
 
     jsonData = {
-        "positions": getKeyframes(text, "Transform Position", ["t", "x", "y"]),
-        "sizes":     getKeyframes(text, "Transform Size", ["t", "size"])
+        "positions": getKeyframes(text, "Transform\tPosition", ["t", "x", "y"]),
+        "scales":    getKeyframes(text, "Transform\tScale", ["t", "scale"]),
+        "rotations": getKeyframes(text, "Transform\tRotation", ["t", "rotation"])
     }
 
     outfile = open(outp, "w")
