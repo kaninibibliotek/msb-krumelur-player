@@ -1,63 +1,48 @@
-var eventsSurrounding = function(events, time) {
-  var first, second;
+var animationPositionAtTime = function(animation, index, time) {
+  var current = animation.positions[index];
+  var next    = animation.positions[index + 1];
 
-  for (var i = events.length - 1; i >= 0; i--) {
-    if (events[i].t <= time) {
-      first  = events[i];
-      second = events[i+1];
-
-      break;
-    }
-  }
-
-  return {
-    left:  first,
-    right: second
-  };
-};
-
-var animationPositionAtTime = function(animation, time) {
-  var positions = eventsSurrounding(animation.positions, time);
-
-  if (!positions.right) {
+  if (!next) {
     return {
-      x: positions.left.x,
-      y: positions.left.y
+      x: current.x,
+      y: current.y
     };
   }
 
-  var dt = positions.right.t - positions.left.t;
-  var dx = positions.right.x - positions.left.x;
-  var dy = positions.right.y - positions.left.y;
+  var dt = next.t - current.t;
+  var dx = next.x - current.x;
+  var dy = next.y - current.y;
 
   return {
-    x: positions.left.x + (dx / dt) * (time - positions.left.t),
-    y: positions.left.y + (dy / dt) * (time - positions.left.t)
+    x: current.x + (dx / dt) * (time - current.t),
+    y: current.y + (dy / dt) * (time - current.t)
   };
 };
 
-var animationScaleAtTime = function(animation, time) {
-  var scales = eventsSurrounding(animation.scales, time);
+var animationScaleAtTime = function(animation, index, time) {
+  var current = animation.scales[index];
+  var next    = animation.scales[index + 1];
 
-  if (!scales.right) {
-    return scales.left.scale;
+  if (!next) {
+    return current.scale;
   }
 
-  var dt = scales.right.t - scales.left.t;
-  var ds = scales.right.scale - scales.left.scale;
+  var dt = next.t - current.t;
+  var ds = next.scale - current.scale;
 
-  return scales.left.scale + (ds / dt) * (time - scales.left.t);
+  return current.scale + (ds / dt) * (time - current.t);
 };
 
-var animationRotationAtTime = function(animation, time) {
-  var rotations = eventsSurrounding(animation.rotations, time);
+var animationRotationAtTime = function(animation, index, time) {
+  var current = animation.rotations[index];
+  var next    = animation.rotations[index + 1];
 
-  if (!rotations.right) {
-    return rotations.left.rotation;
+  if (!next) {
+    return current.rotation;
   }
 
-  var dt = rotations.right.t - rotations.left.t;
-  var dr = rotations.right.rotation - rotations.left.rotation;
+  var dt = next.t - current.t;
+  var dr = next.rotation - current.rotation;
 
-  return rotations.left.rotation + (dr / dt) * (time - rotations.left.t);
+  return current.rotation + (dr / dt) * (time - current.t);
 };
