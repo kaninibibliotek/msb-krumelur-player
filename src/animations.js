@@ -1,3 +1,7 @@
+var lerp = function(x1, y1, x2, y2, t) {
+  return ((y2 - y1) / (x2 - x1)) * (t - x1) + y1;
+};
+
 var animationPositionAtTime = function(animation, index, time) {
   var current = animation.positions[index];
   var next    = animation.positions[index + 1];
@@ -9,13 +13,9 @@ var animationPositionAtTime = function(animation, index, time) {
     };
   }
 
-  var dt = next.t - current.t;
-  var dx = next.x - current.x;
-  var dy = next.y - current.y;
-
   return {
-    x: current.x + (dx / dt) * (time - current.t),
-    y: current.y + (dy / dt) * (time - current.t)
+    x: lerp(current.t, current.x, next.t, next.x, time),
+    y: lerp(current.t, current.y, next.t, next.y, time)
   };
 };
 
@@ -27,10 +27,7 @@ var animationScaleAtTime = function(animation, index, time) {
     return current.scale;
   }
 
-  var dt = next.t - current.t;
-  var ds = next.scale - current.scale;
-
-  return current.scale + (ds / dt) * (time - current.t);
+  return lerp(current.t, current.scale, next.t, next.scale, time);
 };
 
 var animationRotationAtTime = function(animation, index, time) {
@@ -41,8 +38,5 @@ var animationRotationAtTime = function(animation, index, time) {
     return current.rotation;
   }
 
-  var dt = next.t - current.t;
-  var dr = next.rotation - current.rotation;
-
-  return current.rotation + (dr / dt) * (time - current.t);
+  return lerp(current.t, current.rotation, next.t, next.rotation, time);
 };
