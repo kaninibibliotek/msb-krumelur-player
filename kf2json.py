@@ -33,9 +33,9 @@ def convert(inp, outp):
     infile.close()
 
     jsonData = {
-        "positions": getKeyframes(text, "Transform\tPosition", ["t", "x", "y"]),
-        "scales":    getKeyframes(text, "Transform\tScale", ["t", "scale"]),
-        "rotations": getKeyframes(text, "Transform\tRotation", ["t", "rotation"])
+        "positions": getKeyframes(text, "Transform\tPosition", ["frame", "x", "y"]),
+        "scales":    getKeyframes(text, "Transform\tScale", ["frame", "scale"]),
+        "rotations": getKeyframes(text, "Transform\tRotation", ["frame", "rotation"])
     }
 
     outfile = open(outp, "w")
