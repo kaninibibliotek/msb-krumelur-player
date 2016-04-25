@@ -2,18 +2,24 @@ var canvas = document.getElementsByTagName('canvas')[0];
 var ctx = canvas.getContext('2d');
 
 var krumelurer = [];
+var effects = [];
 
 function addKrumelur(json) {
   krumelurer.push(new Krumelur('../images/bros.jpg', JSON.parse(json)));
 }
 
+effects.push(new Effect('../images/explosion.jpg'));
+
 function draw(dt) {
   ctx.clearRect(0, 0, 4080, 1080);
 
+  var i;
   var state;
 
-  for (var i = 0; i < krumelurer.length; i++) {
-    state = krumelurer[i].update(dt);
+  for (i = 0; i < krumelurer.length; i++) {
+    var krumelur = krumelurer[i];
+
+    state = krumelur.update(dt);
 
     ctx.save();
 
@@ -21,7 +27,7 @@ function draw(dt) {
     ctx.rotate(state.rotation / 180 * Math.PI);
 
     ctx.drawImage(
-      krumelurer[i].image,
+      krumelur.image,
       -state.scale / 2,
       -state.scale / 2,
       state.scale,
@@ -30,6 +36,26 @@ function draw(dt) {
 
     ctx.restore();
   }
+
+  // TODO knyt effekter till en krumelurs bana
+  for (i = 0; i < effects.length; i++) {
+    var effect = effects[i];
+
+    state = effect.update();
+
+    ctx.drawImage(
+      effect.image,
+      state.offsetX,
+      state.offsetY,
+      effect.spriteWidth,
+      effect.spriteHeight,
+      0,
+      0,
+      effect.spriteWidth,
+      effect.spriteHeight
+    );
+  }
+
 }
 
 var fps  = 60;
