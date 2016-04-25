@@ -8,7 +8,7 @@ function addKrumelur(json) {
 }
 
 function draw(dt) {
-  ctx.clearRect(0, 0, 3500, 1000);
+  ctx.clearRect(0, 0, 4080, 1080);
 
   var state;
 
