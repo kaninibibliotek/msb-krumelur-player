@@ -51,7 +51,7 @@ request.onreadystatechange = function() {
   }
 };
 
-request.open('GET', 'http://localhost:3000/behaviors/anim2.json', true);
+request.open('GET', 'http://localhost:3000/behaviors/varelsen.json', true);
 
 var intervalId = setInterval(function() {
   request.open('GET', 'http://localhost:3000/behaviors/anim1.json', true);
