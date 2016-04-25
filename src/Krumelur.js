@@ -7,7 +7,7 @@ function Krumelur(imgPath, animation) {
 }
 
 Krumelur.prototype.reset = function() {
-  this.time = 0;
+  this.frame = 0;
 
   this.positionIdx = 0;
   this.scaleIdx    = 0;
@@ -15,33 +15,33 @@ Krumelur.prototype.reset = function() {
 };
 
 Krumelur.prototype.update = function(dt) {
-  this.time += dt;
+  this.frame += dt;
 
   var nextPositionIdx = Math.min(this.positionIdx + 1, this.animation.positions.length - 1);
   var nextScaleIdx = Math.min(this.scaleIdx + 1, this.animation.scales.length - 1);
   var nextRotationIdx = Math.min(this.rotationIdx + 1, this.animation.rotations.length - 1);
 
-  if (this.time >= this.animation.positions[nextPositionIdx].t) {
+  if (this.frame >= this.animation.positions[nextPositionIdx].frame) {
     this.positionIdx = nextPositionIdx;
   }
 
-  if (this.time >= this.animation.scales[nextScaleIdx].t) {
+  if (this.frame >= this.animation.scales[nextScaleIdx].frame) {
     this.scaleIdx = nextScaleIdx;
   }
 
-  if (this.time >= this.animation.rotations[nextRotationIdx].t) {
+  if (this.frame >= this.animation.rotations[nextRotationIdx].frame) {
     this.rotationIdx = nextRotationIdx;
   }
 
-  var position = animationPositionAtTime(this.animation, this.positionIdx, this.time);
+  var position = animationPositionAtFrame(this.animation, this.positionIdx, this.frame);
   var state = {
     x:        position.x,
     y:        position.y,
-    scale:    animationScaleAtTime(this.animation, this.scaleIdx, this.time),
-    rotation: animationRotationAtTime(this.animation, this.rotationIdx, this.time)
+    scale:    animationScaleAtFrame(this.animation, this.scaleIdx, this.frame),
+    rotation: animationRotationAtFrame(this.animation, this.rotationIdx, this.frame)
   };
 
-  if (this.time >= this.animation.duration) {
+  if (this.frame >= this.animation.duration) {
     this.reset();
   }
 

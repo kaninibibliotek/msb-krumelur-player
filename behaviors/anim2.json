@@ -1,23 +1,23 @@
 {
-  "duration": 4000,
+  "duration": 240,
   "positions": [
     {
-      "t": 0,
+      "frame": 0,
       "x": 0,
       "y": 0
     },
     {
-      "t": 1500,
+      "frame": 90,
       "x": 700,
       "y": 500
     },
     {
-      "t": 3000,
+      "frame": 180,
       "x": 400,
       "y": 250
     },
     {
-      "t": 4000,
+      "frame": 240,
       "x": 700,
       "y": 20
     }
@@ -25,34 +25,34 @@
 
   "scales": [
     {
-      "t":    0,
+      "frame":    0,
       "scale": 100
     },
     {
-      "t":    1500,
+      "frame":    90,
       "scale": 200
     },
     {
-      "t":    3000,
+      "frame":    180,
       "scale": 75
     }
   ],
 
   "rotations": [
     {
-      "t": 0,
+      "frame": 0,
       "rotation": 0
     },
     {
-      "t": 2000,
+      "frame": 120,
       "rotation": 360
     },
     {
-      "t": 2500,
+      "frame": 150,
       "rotation": 270
     },
     {
-      "t": 3000,
+      "frame": 180,
       "rotation": 0
     }
   ]

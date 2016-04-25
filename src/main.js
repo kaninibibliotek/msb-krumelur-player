@@ -32,10 +32,11 @@ function draw(dt) {
   }
 }
 
-var rate = 1000/60;
+var fps  = 60;
+var rate = 1000 / fps;
 
 setInterval(function() {
-  draw(rate);
+  draw(1);
 }, rate);
 
 var request = new XMLHttpRequest();
