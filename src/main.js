@@ -7,13 +7,31 @@ function addKrumelur(json) {
   krumelurer.push(new Krumelur('../images/bros.jpg', JSON.parse(json)));
 }
 
-function draw(dt) {
+var fps  = 60;
+var rate = 1000 / fps;
+
+var now;
+var last = Date.now();
+var delta;
+
+function draw() {
+  requestAnimationFrame(draw);
+
+  now   = Date.now();
+  delta = now - last;
+
+  if (delta < rate) {
+    return;
+  }
+
+  last = now - (delta % rate);
+
   ctx.clearRect(0, 0, 4080, 1080);
 
   var state;
 
   for (var i = 0; i < krumelurer.length; i++) {
-    state = krumelurer[i].update(dt);
+    state = krumelurer[i].update();
 
     ctx.save();
 
@@ -32,12 +50,7 @@ function draw(dt) {
   }
 }
 
-var fps  = 60;
-var rate = 1000 / fps;
-
-setInterval(function() {
-  draw(1);
-}, rate);
+draw();
 
 var request = new XMLHttpRequest();
 
