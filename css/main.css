@@ -3,5 +3,23 @@ body {
 }
 
 canvas {
-    border: 1px solid black;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+div.settings {
+    position: absolute;
+    top: 200px;
+    left: 10px;
+    width: 300px;
+    height: 200px;
+    background: rgba(180, 100, 150, 0.8);
+    display: none;
 }

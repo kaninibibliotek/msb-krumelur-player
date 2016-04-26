@@ -14,8 +14,8 @@ Krumelur.prototype.reset = function() {
   this.rotationIdx = 0;
 };
 
-Krumelur.prototype.update = function() {
-  this.frame += 1;
+Krumelur.prototype.update = function(delta) {
+  this.frame += delta;
 
   var nextPositionIdx = Math.min(this.positionIdx + 1, this.animation.positions.length - 1);
   var nextScaleIdx = Math.min(this.scaleIdx + 1, this.animation.scales.length - 1);

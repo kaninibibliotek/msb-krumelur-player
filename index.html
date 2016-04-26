@@ -5,11 +5,29 @@
     </head>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <body>
+        <img src="../images/background.jpg"/>
         <canvas width="4080" height="1080"></canvas>
+        <div class="settings">
+            <div>
+                <span>Speed:</span>
+                <input class="input-speed" type="range" min="0.1" max="2" step="0.1" value="1">
+                <span class="label-speed"></span>
+            </div>
+            <div>
+                <span>Size:</span>
+                <input class="input-size" type="range" min="0.1" max="2" step="0.1" value="1">
+                <span class="label-size"></span>
+            </div>
+            <div>
+                <span>Highlight Masks:</span>
+                <input class="toggle-masks" type="checkbox">
+            </div>
+        </div>
     </body>
+    <script type="text/javascript" src="src/settings.js"></script>
     <script type="text/javascript" src="src/animations.js"></script>
     <script type="text/javascript" src="src/masks.js"></script>
     <script type="text/javascript" src="src/eventHandlers.js"></script>
     <script type="text/javascript" src="src/Krumelur.js"></script>
-    <script type="text/javascript" src="src/main.js"></script>
+    <script type="text/javascript" src="src/player.js"></script>
 </html>
