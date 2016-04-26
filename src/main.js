@@ -28,10 +28,11 @@ function draw() {
 
   ctx.clearRect(0, 0, 4080, 1080);
 
-  var state;
+  var i;
 
-  for (var i = 0; i < krumelurer.length; i++) {
-    state = krumelurer[i].update();
+  // Draw krumelurs
+  for (i = 0; i < krumelurer.length; i++) {
+    var state = krumelurer[i].update();
 
     ctx.save();
 
@@ -48,6 +49,28 @@ function draw() {
 
     ctx.restore();
   }
+
+  // Draw masks
+  ctx.fillStyle = "rgba(0,0,0,1)";
+  ctx.globalCompositeOperation = 'destination-out';
+
+  for (i = 0; i < masks.length; i++) {
+    var mask = masks[i];
+
+    ctx.beginPath();
+
+    ctx.moveTo(mask[0].x, mask[0].y);
+
+    for (var j = 1; j < mask.length; j++) {
+      ctx.lineTo(mask[j].x, mask[j].y);
+    }
+
+    ctx.closePath();
+
+    ctx.fill();
+  }
+
+  ctx.globalCompositeOperation = 'source-over';
 }
 
 draw();
