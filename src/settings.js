@@ -7,6 +7,7 @@ var settings = (function() {
   var sizeLabel  = settingsElem.getElementsByClassName('label-size')[0];
 
   var toggleMasksCheckBox = settingsElem.getElementsByClassName('toggle-masks')[0];
+  var maskJsonElem        = settingsElem.getElementsByClassName('mask-json')[0]
 
   var hidden = true;
 
@@ -44,6 +45,10 @@ var settings = (function() {
       } else {
         settingsElem.setAttribute('style', 'display: block;');
       }
+    },
+
+    showJsonMask: function(maskPoints) {
+      maskJsonElem.innerHTML = JSON.stringify(maskPoints, null, 2);
     }
   }
 })();

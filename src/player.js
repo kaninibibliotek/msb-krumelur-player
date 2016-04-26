@@ -4,10 +4,13 @@ var player = (function() {
 
   var krumelurer = [];
 
+  var maskPoints = [];
+
   // Animation control variables
   var masterSpeed = 1;
   var masterSize  = 1;
   var showMasks   = false;
+  var hasFullMask = false;
 
   // Only used for drawing masks
   ctx.strokeStyle = "red";
@@ -80,6 +83,22 @@ var player = (function() {
 
       ctx.globalCompositeOperation = 'source-over';
     }
+
+    // Draw test mask
+    ctx.beginPath();
+
+    for (i = 0; i < maskPoints.length; i++) {
+      var point = maskPoints[i];
+
+      ctx.fillRect(point.x - 4, point.y - 4, 8, 8);
+      ctx.lineTo(point.x, point.y);
+    }
+
+    if (hasFullMask) {
+      ctx.closePath();
+    }
+
+    ctx.stroke();
   }
 
   draw();
@@ -123,6 +142,25 @@ var player = (function() {
 
     showMasks: function(show) {
       showMasks = show;
+    },
+
+    addMaskPoint: function(x, y) {
+      if (hasFullMask) {
+        maskPoints  = [];
+        hasFullMask = false;
+      } else {
+        maskPoints.push({
+          x: x,
+          y: y
+        });
+
+        settings.showJsonMask(maskPoints);
+      }
+    },
+
+    closeMask: function() {
+      hasFullMask = true;
+      settings.showJsonMask(maskPoints);
     }
   }
 })();

@@ -9,5 +9,9 @@ document.addEventListener('keydown', function(ev) {
 var canvas = document.getElementsByTagName('canvas')[0];
 
 canvas.addEventListener('mousedown', function(ev) {
-  console.log(ev.offsetX, ev.offsetY);
+  if (ev.shiftKey) {
+    player.closeMask();
+  } else {
+    player.addMaskPoint(ev.offsetX, ev.offsetY);
+  }
 });
