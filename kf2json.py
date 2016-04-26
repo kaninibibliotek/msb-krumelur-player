@@ -60,8 +60,8 @@ def convert(inp, outp, targetFps):
         for kf in keyframes:
             kf["frame"] *= fpsScale
 
-            if kf["frame"] > maxFrame:
-                maxFrame = kf["frame"]
+        if keyframes[-1]["frame"] > maxFrame:
+            maxFrame = keyframes[-1]["frame"]
 
     jsonData["duration"] = maxFrame
 
