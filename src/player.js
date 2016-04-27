@@ -41,7 +41,7 @@ var player = (function() {
 
     lastDraw = now - (timeSinceLastDraw % rate);
 
-    ctx.clearRect(0, 0, 4080, 1080);
+    ctx.clearRect(0, 0, 5760, 1080);
 
     var i;
 
