@@ -2,9 +2,15 @@ var player = (function() {
   var canvas = document.getElementsByTagName('canvas')[0];
   var ctx    = canvas.getContext('2d');
 
-  var krumelurer = [];
+  var actors = [];
 
-  var maskPoints = [];
+  maskVertices.forEach(function(vertices) {
+    actors.push(new Mask(vertices, 1));
+  });
+
+  actors.push(new Effect('../images/explosion.jpg', 1));
+
+  var testMaskVertices = [];
 
   // Animation control variables
   var masterSpeed = 1;
@@ -39,57 +45,24 @@ var player = (function() {
 
     var i;
 
-    // Draw krumelurs
-    for (i = 0; i < krumelurer.length; i++) {
-      var state = krumelurer[i].update(masterSpeed);
-      var scale = state.scale * masterSize;
+    // Draw actors
+    ctx.beginPath();
 
-      ctx.save();
-
-      ctx.translate(state.x + scale / 2, state.y + scale / 2);
-      ctx.rotate(state.rotation / 180 * Math.PI);
-
-      ctx.drawImage(
-        krumelurer[i].image,
-        -scale / 2,
-        -scale / 2,
-        scale,
-        scale
-      );
-
-      ctx.restore();
-    }
-
-    // Draw masks
-    for (i = 0; i < masks.length; i++) {
-      var mask = masks[i];
-
-      ctx.beginPath();
-
-      ctx.moveTo(mask[0].x, mask[0].y);
-
-      for (var j = 1; j < mask.length; j++) {
-        ctx.lineTo(mask[j].x, mask[j].y);
-      }
+    for (i = 0; i < actors.length; i++) {
+      actors[i].draw(ctx, masterSpeed, masterSize);
 
       ctx.closePath();
+    }
 
-      if (showMasks) {
-        ctx.stroke();
-      }
-
-      ctx.globalCompositeOperation = 'destination-out';
-
-      ctx.fill();
-
-      ctx.globalCompositeOperation = 'source-over';
+    if (showMasks) {
+      ctx.stroke();
     }
 
     // Draw test mask
     ctx.beginPath();
 
-    for (i = 0; i < maskPoints.length; i++) {
-      var point = maskPoints[i];
+    for (i = 0; i < testMaskVertices.length; i++) {
+      var point = testMaskVertices[i];
 
       ctx.fillRect(point.x - 4, point.y - 4, 8, 8);
       ctx.lineTo(point.x, point.y);
@@ -106,7 +79,11 @@ var player = (function() {
 
   // "Server" "communication"
   function addKrumelur(json) {
-    krumelurer.push(new Krumelur('../images/bros.jpg', JSON.parse(json)));
+    actors.push(new Krumelur('../images/bros.jpg', JSON.parse(json), 0));
+
+    actors.sort(function(a, b) {
+      return a.z - b.z;
+    });
   }
 
   var request = new XMLHttpRequest();
@@ -126,7 +103,7 @@ var player = (function() {
   var intervalId = setInterval(function() {
     request.open('GET', 'http://localhost:3000/behaviors/anim1.json', true);
 
-    if (krumelurer.length >= 100) {
+    if (actors.length >= 100) {
       clearInterval(intervalId);
     }
   }, 100);
@@ -147,21 +124,21 @@ var player = (function() {
 
     addMaskPoint: function(x, y) {
       if (hasFullMask) {
-        maskPoints  = [];
+        testMaskVertices  = [];
         hasFullMask = false;
       } else {
-        maskPoints.push({
+        testMaskVertices.push({
           x: x,
           y: y
         });
 
-        settings.showJsonMask(maskPoints);
+        settings.showJsonMask(testMaskVertices);
       }
     },
 
     closeMask: function() {
       hasFullMask = true;
-      settings.showJsonMask(maskPoints);
+      settings.showJsonMask(testMaskVertices);
     }
   }
 })();

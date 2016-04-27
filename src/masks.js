@@ -1,4 +1,23 @@
-var masks = [
+function Mask(vertices, zIndex) {
+  this.vertices = vertices;
+  this.z        = zIndex || 0;
+}
+
+Mask.prototype.draw = function(context) {
+  context.moveTo(this.vertices[0].x, this.vertices[0].y);
+
+  for (var j = 1; j < this.vertices.length; j++) {
+    context.lineTo(this.vertices[j].x, this.vertices[j].y);
+  }
+
+  context.globalCompositeOperation = 'destination-out';
+
+  context.fill();
+
+  context.globalCompositeOperation = 'source-over';
+};
+
+var maskVertices = [
   // 1
   [
     {

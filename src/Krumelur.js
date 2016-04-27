@@ -1,7 +1,8 @@
-function Krumelur(imgPath, animation) {
+function Krumelur(imgPath, animation, zIndex) {
   this.image     = new Image();
   this.image.src = imgPath;
   this.animation = animation;
+  this.z         = zIndex;
 
   this.reset();
 }
@@ -14,8 +15,8 @@ Krumelur.prototype.reset = function() {
   this.rotationIdx = 0;
 };
 
-Krumelur.prototype.update = function(delta) {
-  this.frame += delta;
+Krumelur.prototype.draw = function(context, frameDelta, size) {
+  this.frame += frameDelta;
 
   var nextPositionIdx = Math.min(this.positionIdx + 1, this.animation.positions.length - 1);
   var nextScaleIdx = Math.min(this.scaleIdx + 1, this.animation.scales.length - 1);
@@ -34,16 +35,25 @@ Krumelur.prototype.update = function(delta) {
   }
 
   var position = animationPositionAtFrame(this.animation, this.positionIdx, this.frame);
-  var state = {
-    x:        position.x,
-    y:        position.y,
-    scale:    animationScaleAtFrame(this.animation, this.scaleIdx, this.frame),
-    rotation: animationRotationAtFrame(this.animation, this.rotationIdx, this.frame)
-  };
+  var scale    = animationScaleAtFrame(this.animation, this.scaleIdx, this.frame) * size;
+  var rotation = animationRotationAtFrame(this.animation, this.rotationIdx, this.frame);
 
   if (this.frame >= this.animation.duration) {
     this.reset();
   }
 
-  return state;
+  context.save();
+
+  context.translate(position.x + scale / 2, position.y + scale / 2);
+  context.rotate(rotation / 180 * Math.PI);
+
+  context.drawImage(
+    this.image,
+    -scale / 2,
+    -scale / 2,
+    scale,
+    scale
+  );
+
+  context.restore();
 };

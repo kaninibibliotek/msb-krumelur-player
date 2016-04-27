@@ -1,4 +1,4 @@
-function Effect(imgPath) {
+function Effect(imgPath, zIndex) {
   this.image = new Image();
   this.image.src = imgPath;
 
@@ -10,10 +10,11 @@ function Effect(imgPath) {
 
   this.offsetX = 0;
   this.offsetY = 0;
+
+  this.z = zIndex;
 }
 
-Effect.prototype.update = function(context) {
-
+Effect.prototype.draw = function(context) {
   var nextX = this.offsetX + this.spriteWidth;
   var nextY = this.offsetY;
 
@@ -25,6 +26,8 @@ Effect.prototype.update = function(context) {
   if (nextY >= this.height) {
     nextY = 0;
   }
+
+  // TODO get position
 
   context.drawImage(
     this.image,
