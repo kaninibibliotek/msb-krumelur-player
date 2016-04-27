@@ -42,18 +42,19 @@ var player = (function() {
     // Draw krumelurs
     for (i = 0; i < krumelurer.length; i++) {
       var state = krumelurer[i].update(masterSpeed);
+      var scale = state.scale * masterSize;
 
       ctx.save();
 
-      ctx.translate(state.x + state.scale / 2, state.y + state.scale / 2);
+      ctx.translate(state.x + scale / 2, state.y + scale / 2);
       ctx.rotate(state.rotation / 180 * Math.PI);
 
       ctx.drawImage(
         krumelurer[i].image,
-        -state.scale / 2,
-        -state.scale / 2,
-        state.scale * masterSize,
-        state.scale * masterSize
+        -scale / 2,
+        -scale / 2,
+        scale,
+        scale
       );
 
       ctx.restore();
