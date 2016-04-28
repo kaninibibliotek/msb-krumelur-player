@@ -1,14 +1,23 @@
 var player = (function() {
-  var canvas = document.getElementsByTagName('canvas')[0];
-  var ctx    = canvas.getContext('2d');
 
-  var actors = [];
+  var renderer = PIXI.autoDetectRenderer(
+    5760,
+    1080,
+    {
+      view:        document.getElementsByTagName('canvas')[0],
+      transparent: true
+    }
+  );
 
-  maskVertices.forEach(function(vertices) {
-    actors.push(new Mask(vertices, 1));
-  });
+  var scene = new PIXI.Container();
 
-  actors.push(new Effect('../images/explosion.jpg', 1));
+  // backStage actors are masked by invisible polygons
+  var backStage  = new Stage();
+  // frontStage actors are not masked
+  var frontStage = new Stage();
+
+  scene.addChild(backStage.container);
+  scene.addChild(frontStage.container);
 
   var testMaskVertices = [];
 
@@ -18,71 +27,67 @@ var player = (function() {
   var showMasks   = false;
   var hasFullMask = false;
 
-  // Only used for drawing masks
-  ctx.strokeStyle = "red";
-  ctx.lineWidth   = 5;
+  // Draw mask polygons on a canvas and use the canvas
+  // as a spritemask for backStage
+  var maskCanvas = document.createElement('canvas');
+  var ctx        = maskCanvas.getContext('2d');
 
-  // Timing
-  var fps  = 60;
-  var rate = 1000 / fps;
+  maskCanvas.width = 5760;
+  maskCanvas.height = 1080;
 
-  var lastDraw = Date.now();
-  var timeSinceLastDraw;
+  ctx.fillStyle = "rgba(255, 255, 255, 1)";
+  ctx.fillRect(0, 0, 5760, 1080);
 
+  ctx.fillStyle = "rgba(0, 0, 0, 1)";
+
+  maskVertices.forEach(function(vertices) {
+    ctx.beginPath();
+
+    ctx.moveTo(vertices[0].x, vertices[0].y);
+
+    for (var i = 1; i < vertices.length; i++) {
+      ctx.lineTo(vertices[i].x, vertices[i].y);
+    }
+
+    ctx.closePath();
+
+    ctx.fill();
+  });
+
+  backStage.container.mask = new PIXI.Sprite(PIXI.Texture.fromCanvas(maskCanvas));
+
+  // Draw loop
   function draw() {
     requestAnimationFrame(draw);
 
-    var now = Date.now();
-    timeSinceLastDraw = now - lastDraw;
+    backStage.update(masterSpeed);
+    frontStage.update(masterSpeed);
 
-    if (timeSinceLastDraw < rate) {
-      return;
-    }
+    // TODO draw testMaskVertices on frontStage
 
-    lastDraw = now - (timeSinceLastDraw % rate);
-
-    ctx.clearRect(0, 0, 5760, 1080);
-
-    var i;
-
-    // Draw actors
-    ctx.beginPath();
-
-    for (i = 0; i < actors.length; i++) {
-      actors[i].draw(ctx, masterSpeed, masterSize);
-
-      ctx.closePath();
-    }
-
-    if (showMasks) {
-      ctx.stroke();
-    }
-
-    // Draw test mask
-    ctx.beginPath();
-
-    for (i = 0; i < testMaskVertices.length; i++) {
-      var point = testMaskVertices[i];
-
-      ctx.fillRect(point.x - 4, point.y - 4, 8, 8);
-      ctx.lineTo(point.x, point.y);
-    }
-
-    if (hasFullMask) {
-      ctx.closePath();
-    }
-
-    ctx.stroke();
+    renderer.render(scene);
   }
 
-  draw();
+  requestAnimationFrame(draw);
+
+  function loadImage(path, onLoad) {
+    var image = PIXI.loader.resources[path];
+
+    if (image) {
+      onLoad(image.texture);
+    } else {
+      PIXI.loader.add(path).load(function(loader, resources) {
+        onLoad(resources[path].texture);
+      });
+    }
+  }
 
   // "Server" "communication"
   function addKrumelur(json) {
-    actors.push(new Krumelur('../images/bros.jpg', JSON.parse(json), 0));
+    loadImage('../images/bros.jpg', function(texture) {
+      var stage = Math.random() > 0.5 ? backStage : frontStage;
 
-    actors.sort(function(a, b) {
-      return a.z - b.z;
+      stage.addActor(new Krumelur(texture, JSON.parse(json), 0));
     });
   }
 
@@ -100,13 +105,15 @@ var player = (function() {
 
   request.open('GET', 'http://localhost:3000/behaviors/varelsen.json', true);
 
+  var count = 0;
+
   var intervalId = setInterval(function() {
     request.open('GET', 'http://localhost:3000/behaviors/anim1.json', true);
 
-    if (actors.length >= 100) {
+    if (++count >= 10) {
       clearInterval(intervalId);
     }
-  }, 100);
+  }, 1000);
 
   // API
   return {

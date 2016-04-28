@@ -1,8 +1,10 @@
-function Krumelur(imgPath, animation, zIndex) {
-  this.image     = new Image();
-  this.image.src = imgPath;
+function Krumelur(texture, animation, zIndex) {
+  this.sprite    = new PIXI.Sprite(texture);
   this.animation = animation;
   this.z         = zIndex;
+
+  this.sprite.anchor.set(0.5, 0.5);
+  this.sprite.scale.set(0.2, 0.2);
 
   this.reset();
 }
@@ -15,7 +17,7 @@ Krumelur.prototype.reset = function() {
   this.rotationIdx = 0;
 };
 
-Krumelur.prototype.draw = function(context, frameDelta, size) {
+Krumelur.prototype.update = function(frameDelta) {
   this.frame += frameDelta;
 
   var nextPositionIdx = Math.min(this.positionIdx + 1, this.animation.positions.length - 1);
@@ -35,25 +37,14 @@ Krumelur.prototype.draw = function(context, frameDelta, size) {
   }
 
   var position = animationPositionAtFrame(this.animation, this.positionIdx, this.frame);
-  var scale    = animationScaleAtFrame(this.animation, this.scaleIdx, this.frame) * size;
+  var scale    = animationScaleAtFrame(this.animation, this.scaleIdx, this.frame);
   var rotation = animationRotationAtFrame(this.animation, this.rotationIdx, this.frame);
+
+  this.sprite.position.set(position.x, position.y);
+
+  this.sprite.rotation = rotation / 180 * Math.PI;
 
   if (this.frame >= this.animation.duration) {
     this.reset();
   }
-
-  context.save();
-
-  context.translate(position.x + scale / 2, position.y + scale / 2);
-  context.rotate(rotation / 180 * Math.PI);
-
-  context.drawImage(
-    this.image,
-    -scale / 2,
-    -scale / 2,
-    scale,
-    scale
-  );
-
-  context.restore();
 };
