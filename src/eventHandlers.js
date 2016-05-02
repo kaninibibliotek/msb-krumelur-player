@@ -10,8 +10,8 @@ var canvas = document.getElementsByTagName('canvas')[0];
 
 canvas.addEventListener('mousedown', function(ev) {
   if (ev.shiftKey) {
-    player.closeMask();
+    player.removeTestMask();
   } else {
-    player.addMaskPoint(ev.offsetX, ev.offsetY);
+    player.addTestMaskPoint(ev.offsetX, ev.offsetY);
   }
 });

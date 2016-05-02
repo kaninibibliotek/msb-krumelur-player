@@ -11,6 +11,7 @@ var player = (function() {
 
   var stage = new Stage();
 
+  var testMask;
   var testMaskVertices = [];
 
   // Animation control variables
@@ -108,23 +109,42 @@ var player = (function() {
       showMasks = show;
     },
 
-    addMaskPoint: function(x, y) {
-      if (hasFullMask) {
-        testMaskVertices  = [];
-        hasFullMask = false;
-      } else {
-        testMaskVertices.push({
-          x: x,
-          y: y
-        });
+    addTestMaskPoint: function(x, y) {
+      testMaskVertices.push({
+        x: x,
+        y: y
+      });
 
-        settings.showJsonMask(testMaskVertices);
+      stage.removeActor(testMask);
+
+      var graphics = new PIXI.Graphics();
+      graphics.lineStyle(2, 0x00FF00, 1);
+
+      var i;
+
+      for (i = 0; i < testMaskVertices.length; i++) {
+        graphics.drawEllipse(testMaskVertices[i].x, testMaskVertices[i].y, 5, 5);
       }
+
+      for (i = 0; i < testMaskVertices.length; i++) {
+        if (i === 0) {
+          graphics.moveTo(testMaskVertices[i].x, testMaskVertices[i].y);
+        } else {
+          graphics.lineTo(testMaskVertices[i].x, testMaskVertices[i].y);
+        }
+      }
+
+      testMask = new Scenery(graphics, 2);
+
+      stage.addActor(testMask);
+
+      settings.showJsonMask(testMaskVertices);
     },
 
-    closeMask: function() {
-      hasFullMask = true;
-      settings.showJsonMask(testMaskVertices);
+    removeTestMask: function() {
+      stage.removeActor(testMask);
+
+      testMaskVertices = [];
     }
   }
 })();
