@@ -5,7 +5,6 @@ function Krumelur(texture, animation, zIndex) {
   this.zIndex    = zIndex;
 
   this.anchor.set(0.5, 0.5);
-  this.scale.set(0.2, 0.2);
 
   this.reset();
 }
@@ -20,7 +19,7 @@ Krumelur.prototype.reset = function() {
   this.rotationIdx = 0;
 };
 
-Krumelur.prototype.update = function(frameDelta) {
+Krumelur.prototype.update = function(frameDelta, size) {
   this.frame += frameDelta;
 
   var nextPositionIdx = Math.min(this.positionIdx + 1, this.animation.positions.length - 1);
@@ -40,10 +39,11 @@ Krumelur.prototype.update = function(frameDelta) {
   }
 
   var position = animationPositionAtFrame(this.animation, this.positionIdx, this.frame);
-  var scale    = animationScaleAtFrame(this.animation, this.scaleIdx, this.frame);
+  var scale    = size * animationScaleAtFrame(this.animation, this.scaleIdx, this.frame) / 100;
   var rotation = animationRotationAtFrame(this.animation, this.rotationIdx, this.frame);
 
   this.position.set(position.x, position.y);
+  this.scale.set(scale, scale);
 
   this.rotation = rotation / 180 * Math.PI;
 

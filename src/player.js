@@ -43,7 +43,7 @@ var player = (function() {
   function draw() {
     requestAnimationFrame(draw);
 
-    stage.update(masterSpeed);
+    stage.update(masterSpeed, masterSize);
 
     // TODO draw testMaskVertices
 

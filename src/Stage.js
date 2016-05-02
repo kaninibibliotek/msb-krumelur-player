@@ -12,9 +12,9 @@ Stage.prototype.removeActor = function(actor) {
   this.removeChild(actor);
 };
 
-Stage.prototype.update = function(frameDelta) {
+Stage.prototype.update = function(frameDelta, masterSize) {
   this.children.forEach(function(actor) {
-    actor.update(frameDelta);
+    actor.update(frameDelta, masterSize);
   });
 
   // TODO Array.sort is unstable, replace it
