@@ -126,12 +126,10 @@ var player = (function() {
         graphics.drawEllipse(testMaskVertices[i].x, testMaskVertices[i].y, 5, 5);
       }
 
-      for (i = 0; i < testMaskVertices.length; i++) {
-        if (i === 0) {
-          graphics.moveTo(testMaskVertices[i].x, testMaskVertices[i].y);
-        } else {
-          graphics.lineTo(testMaskVertices[i].x, testMaskVertices[i].y);
-        }
+      graphics.moveTo(testMaskVertices[0].x, testMaskVertices[0].y);
+
+      for (i = 1; i < testMaskVertices.length; i++) {
+        graphics.lineTo(testMaskVertices[i].x, testMaskVertices[i].y);
       }
 
       testMask = new Scenery(graphics, 2);
