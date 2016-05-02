@@ -1,13 +1,16 @@
 function Krumelur(texture, animation, zIndex) {
-  this.sprite    = new PIXI.Sprite(texture);
-  this.animation = animation;
-  this.z         = zIndex;
+  PIXI.Sprite.call(this, texture);
 
-  this.sprite.anchor.set(0.5, 0.5);
-  this.sprite.scale.set(0.2, 0.2);
+  this.animation = animation;
+  this.zIndex    = zIndex;
+
+  this.anchor.set(0.5, 0.5);
+  this.scale.set(0.2, 0.2);
 
   this.reset();
 }
+
+Krumelur.prototype = Object.create(PIXI.Sprite.prototype);
 
 Krumelur.prototype.reset = function() {
   this.frame = 0;
@@ -40,9 +43,9 @@ Krumelur.prototype.update = function(frameDelta) {
   var scale    = animationScaleAtFrame(this.animation, this.scaleIdx, this.frame);
   var rotation = animationRotationAtFrame(this.animation, this.rotationIdx, this.frame);
 
-  this.sprite.position.set(position.x, position.y);
+  this.position.set(position.x, position.y);
 
-  this.sprite.rotation = rotation / 180 * Math.PI;
+  this.rotation = rotation / 180 * Math.PI;
 
   if (this.frame >= this.animation.duration) {
     this.reset();

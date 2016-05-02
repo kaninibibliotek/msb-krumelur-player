@@ -1,27 +1,23 @@
 function Stage() {
-  this.container = new PIXI.Container();
-
-  this.actors = [];
+  PIXI.Container.call(this);
 }
 
-Stage.prototype.addActor = function(actor) {
-  this.container.addChild(actor.sprite);
+Stage.prototype = Object.create(PIXI.Container.prototype);
 
-  this.actors.push(actor);
+Stage.prototype.addActor = function(actor) {
+  this.addChild(actor);
 };
 
 Stage.prototype.removeActor = function(actor) {
-  this.container.removeChild(actor.sprite);
-
-  var idx = this.actors.indexOf(actor);
-
-  if (idx >= 0) {
-    this.actors.splice(idx, 1);
-  }
+  this.removeChild(actor);
 };
 
 Stage.prototype.update = function(frameDelta) {
-  this.actors.forEach(function(actor) {
+  this.children.forEach(function(actor) {
     actor.update(frameDelta);
+  });
+
+  this.children.sort(function(a, b) {
+    return a.zIndex - b.zIndex;
   });
 };

@@ -9,15 +9,7 @@ var player = (function() {
     }
   );
 
-  var scene = new PIXI.Container();
-
-  // backStage actors are masked by invisible polygons
-  var backStage  = new Stage();
-  // frontStage actors are not masked
-  var frontStage = new Stage();
-
-  scene.addChild(backStage.container);
-  scene.addChild(frontStage.container);
+  var stage = new Stage();
 
   var testMaskVertices = [];
 
@@ -27,45 +19,34 @@ var player = (function() {
   var showMasks   = false;
   var hasFullMask = false;
 
-  // Draw mask polygons on a canvas and use the canvas
-  // as a spritemask for backStage
-  var maskCanvas = document.createElement('canvas');
-  var ctx        = maskCanvas.getContext('2d');
-
-  maskCanvas.width = 5760;
-  maskCanvas.height = 1080;
-
-  ctx.fillStyle = "rgba(255, 255, 255, 1)";
-  ctx.fillRect(0, 0, 5760, 1080);
-
-  ctx.fillStyle = "rgba(0, 0, 0, 1)";
-
   maskVertices.forEach(function(vertices) {
-    ctx.beginPath();
+    var graphics = new PIXI.Graphics();
+    var polygon  = [];
 
-    ctx.moveTo(vertices[0].x, vertices[0].y);
+    vertices.forEach(function(vertex) {
+      polygon.push(vertex.x);
+      polygon.push(vertex.y);
+    });
 
-    for (var i = 1; i < vertices.length; i++) {
-      ctx.lineTo(vertices[i].x, vertices[i].y);
-    }
+    graphics.lineStyle(1, 0x0000FF, 1);
+    graphics.beginFill(0xFF0000, 1);
 
-    ctx.closePath();
+    graphics.drawPolygon(polygon);
 
-    ctx.fill();
+    graphics.endFill();
+
+    stage.addActor(new Scenery(graphics, 2));
   });
-
-  backStage.container.mask = new PIXI.Sprite(PIXI.Texture.fromCanvas(maskCanvas));
 
   // Draw loop
   function draw() {
     requestAnimationFrame(draw);
 
-    backStage.update(masterSpeed);
-    frontStage.update(masterSpeed);
+    stage.update(masterSpeed);
 
-    // TODO draw testMaskVertices on frontStage
+    // TODO draw testMaskVertices
 
-    renderer.render(scene);
+    renderer.render(stage);
   }
 
   requestAnimationFrame(draw);
@@ -85,8 +66,6 @@ var player = (function() {
   // "Server" "communication"
   function addKrumelur(json) {
     loadImage('../images/bros.jpg', function(texture) {
-      var stage = Math.random() > 0.5 ? backStage : frontStage;
-
       stage.addActor(new Krumelur(texture, JSON.parse(json), 0));
     });
   }
@@ -110,10 +89,10 @@ var player = (function() {
   var intervalId = setInterval(function() {
     request.open('GET', 'http://localhost:3000/behaviors/anim1.json', true);
 
-    if (++count >= 10) {
+    if (++count >= 20) {
       clearInterval(intervalId);
     }
-  }, 1000);
+  }, 200);
 
   // API
   return {
