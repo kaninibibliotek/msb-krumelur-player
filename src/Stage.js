@@ -17,6 +17,7 @@ Stage.prototype.update = function(frameDelta) {
     actor.update(frameDelta);
   });
 
+  // TODO Array.sort is unstable, replace it
   this.children.sort(function(a, b) {
     return a.zIndex - b.zIndex;
   });
