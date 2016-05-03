@@ -45,8 +45,6 @@ var player = (function() {
 
     stage.update(masterSpeed, masterSize);
 
-    // TODO draw testMaskVertices
-
     renderer.render(stage);
   }
 

@@ -23,7 +23,7 @@ Krumelur.prototype.update = function(frameDelta, size) {
   this.frame += frameDelta;
 
   var nextPositionIdx = Math.min(this.positionIdx + 1, this.animation.positions.length - 1);
-  var nextScaleIdx = Math.min(this.scaleIdx + 1, this.animation.scales.length - 1);
+  var nextScaleIdx    = Math.min(this.scaleIdx + 1, this.animation.scales.length - 1);
   var nextRotationIdx = Math.min(this.rotationIdx + 1, this.animation.rotations.length - 1);
 
   if (this.frame >= this.animation.positions[nextPositionIdx].frame) {
