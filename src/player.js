@@ -64,6 +64,10 @@ var player = (function() {
     }
   }
 
+  loadImage('../images/explosion.jpg', function(texture) {
+    stage.addActor(new Effect(texture, 3));
+  });
+
   // "Server" "communication"
   function addKrumelur(json) {
     loadImage('../images/bros.jpg', function(texture) {

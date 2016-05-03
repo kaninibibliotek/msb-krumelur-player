@@ -1,46 +1,38 @@
-function Effect(imgPath, zIndex) {
-  this.image = new Image();
-  this.image.src = imgPath;
+function Effect(texture, zIndex) {
+  PIXI.Sprite.call(this, texture);
 
-  this.width  = this.image.width;
-  this.height = this.image.height;
+  this.baseWidth  = texture.width;
+  this.baseHeight = texture.height;
 
-  this.spriteWidth = this.width / 5;
-  this.spriteHeight = this.height / 5;
+  this.spriteWidth  = this.baseWidth / 5;
+  this.spriteHeight = this.baseHeight / 5;
 
-  this.offsetX = 0;
-  this.offsetY = 0;
+  this.texture.frame = new PIXI.Rectangle(0, 0, this.spriteWidth, this.spriteHeight);
 
-  this.z = zIndex;
+  this.zIndex = zIndex;
 }
 
-Effect.prototype.draw = function(context) {
-  var nextX = this.offsetX + this.spriteWidth;
-  var nextY = this.offsetY;
+Effect.prototype = Object.create(PIXI.Sprite.prototype);
 
-  if (nextX >= this.width) {
-    nextX = 0;
-    nextY += this.spriteHeight;
+Effect.prototype.update = function(frameDelta, masterSize) {
+  var rectX = this.texture.frame.x + this.spriteWidth;
+  var rectY = this.texture.frame.y;
+
+  if (rectX >= this.baseWidth) {
+    rectX = 0;
+    rectY += this.spriteHeight;
   }
 
-  if (nextY >= this.height) {
-    nextY = 0;
+  if (rectY >= this.baseHeight) {
+    rectY = 0;
   }
 
-  // TODO get position
-
-  context.drawImage(
-    this.image,
-    this.offsetX,
-    this.offsetY,
-    this.spriteWidth,
-    this.spriteHeight,
-    0,
-    0,
+  this.texture.frame = new PIXI.Rectangle(
+    rectX,
+    rectY,
     this.spriteWidth,
     this.spriteHeight
   );
 
-  this.offsetX = nextX;
-  this.offsetY = nextY;
+  this.scale.set(masterSize, masterSize);
 };
