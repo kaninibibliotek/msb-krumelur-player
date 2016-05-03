@@ -17,8 +17,5 @@ Stage.prototype.update = function(frameDelta, masterSize) {
     actor.update(frameDelta, masterSize);
   });
 
-  // TODO Array.sort is unstable, replace it
-  this.children.sort(function(a, b) {
-    return a.zIndex - b.zIndex;
-  });
+  this.children = mergeSortBy(this.children, 'zIndex');
 };
