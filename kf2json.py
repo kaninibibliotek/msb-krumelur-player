@@ -46,7 +46,7 @@ def convert(inp, outp, targetFps):
         fpsScale = targetFps / inputFps
 
         jsonData = {
-            "positions": getKeyframes(text, "Transform\tPosition", ["frame", "x", "y"]),
+            "positions": getKeyframes(text, "Transform\tPosition", ["frame", "x", "y", "z"]),
             "scales":    getKeyframes(text, "Transform\tScale", ["frame", "scale"]),
             "rotations": getKeyframes(text, "Transform\tRotation", ["frame", "rotation"])
         }
