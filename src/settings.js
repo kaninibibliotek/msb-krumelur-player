@@ -7,7 +7,13 @@ var settings = (function() {
   var sizeLabel  = settingsElem.getElementsByClassName('label-size')[0];
 
   var toggleMasksCheckBox = settingsElem.getElementsByClassName('toggle-masks')[0];
-  var maskJsonElem        = settingsElem.getElementsByClassName('mask-json')[0]
+  var maskJsonElem        = settingsElem.getElementsByClassName('mask-json')[0];
+
+  var selectButtonElem = settingsElem.getElementsByClassName('button-select')[0];
+
+  selectButtonElem.addEventListener('click', function(ev) {
+    maskJsonElem.select();
+  });
 
   var hidden = true;
 

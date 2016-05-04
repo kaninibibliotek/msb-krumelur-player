@@ -20,7 +20,7 @@ div.settings {
     display: none;
 }
 
-pre.mask-json {
+textarea.mask-json {
     position: absolute;
     top: 100px;
     height: 500px;
