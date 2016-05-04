@@ -18,7 +18,6 @@ var player = (function() {
   var masterSpeed = 1;
   var masterSize  = 1;
   var showMasks   = false;
-  var hasFullMask = false;
 
   maskVertices.forEach(function(vertices) {
     stage.addActor(new Scenery(vertices));
