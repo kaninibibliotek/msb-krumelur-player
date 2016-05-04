@@ -1,17 +1,16 @@
 function Scenery(vertices) {
   PIXI.Graphics.call(this);
 
-  var polygon = [];
+  this.polygon = [];
 
-  vertices.forEach(function(vertex) {
-    polygon.push(vertex.x);
-    polygon.push(vertex.y);
-  });
+  for (var i = 0; i < vertices.length; i++) {
+    this.polygon.push(vertices[i].x);
+    this.polygon.push(vertices[i].y);
+  }
 
-  this.lineStyle(1, 0x0000FF, 1);
-  this.beginFill(0xFF0000, 1);
+  this.beginFill(0xFFFFFF, 1);
 
-  this.drawPolygon(polygon);
+  this.drawPolygon(this.polygon);
 
   this.endFill();
 
@@ -22,4 +21,14 @@ Scenery.prototype = Object.create(PIXI.Graphics.prototype);
 
 Scenery.prototype.update = function() {
   return;
+};
+
+Scenery.prototype.changeColor = function(color) {
+  this.clear();
+
+  this.beginFill(color, 1);
+
+  this.drawPolygon(this.polygon);
+
+  this.endFill();
 };

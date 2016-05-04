@@ -17,7 +17,6 @@ var player = (function() {
   // Animation control variables
   var masterSpeed = 1;
   var masterSize  = 1;
-  var showMasks   = false;
 
   maskVertices.forEach(function(vertices) {
     stage.addActor(new Scenery(vertices));
@@ -91,8 +90,12 @@ var player = (function() {
       masterSize = Math.max(0.1, Math.min(newSize, 2));
     },
 
-    showMasks: function(show) {
-      showMasks = show;
+    showScenery: function() {
+      stage.showScenery();
+    },
+
+    hideScenery: function() {
+      stage.hideScenery();
     },
 
     addTestMaskPoint: function(x, y) {

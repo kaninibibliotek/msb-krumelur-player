@@ -39,7 +39,11 @@ var settings = (function() {
   });
 
   toggleMasksCheckBox.addEventListener('change', function(ev) {
-    player.showMasks(toggleMasksCheckBox.checked);
+    if (toggleMasksCheckBox.checked) {
+      player.showScenery();
+    } else {
+      player.hideScenery();
+    }
   });
 
   return {

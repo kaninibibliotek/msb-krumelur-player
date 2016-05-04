@@ -19,3 +19,19 @@ Stage.prototype.update = function(frameDelta, masterSize) {
 
   this.children = mergeSortBy(this.children, 'zIndex');
 };
+
+Stage.prototype.showScenery = function() {
+  this.children.forEach(function(actor) {
+    if (actor instanceof Scenery) {
+      actor.changeColor(0xFF0000);
+    }
+  })
+};
+
+Stage.prototype.hideScenery = function() {
+  this.children.forEach(function(actor) {
+    if (actor instanceof Scenery) {
+      actor.changeColor(0xFFFFFF);
+    }
+  })
+};
