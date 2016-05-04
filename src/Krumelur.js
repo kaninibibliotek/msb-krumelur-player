@@ -43,6 +43,8 @@ Krumelur.prototype.update = function(frameDelta, size) {
   var rotation = animationRotationAtFrame(this.animation, this.rotationIdx, this.frame);
 
   this.position.set(position.x, position.y);
+  this.zIndex = position.z;
+
   this.scale.set(scale, scale);
 
   this.rotation = rotation / 180 * Math.PI;

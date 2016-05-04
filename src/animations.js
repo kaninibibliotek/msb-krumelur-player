@@ -9,13 +9,15 @@ var animationPositionAtFrame = function(animation, index, frame) {
   if (!next) {
     return {
       x: current.x,
-      y: current.y
+      y: current.y,
+      z: current.z
     };
   }
 
   return {
     x: lerp(current.frame, current.x, next.frame, next.x, frame),
-    y: lerp(current.frame, current.y, next.frame, next.y, frame)
+    y: lerp(current.frame, current.y, next.frame, next.y, frame),
+    z: lerp(current.frame, current.z, next.frame, next.z, frame)
   };
 };
 
