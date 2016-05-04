@@ -1,8 +1,8 @@
-function Krumelur(texture, animation, zIndex) {
+function Krumelur(texture, animation) {
   PIXI.Sprite.call(this, texture);
 
   this.animation = animation;
-  this.zIndex    = zIndex;
+  this.zIndex    = 0;
 
   this.anchor.set(0.5, 0.5);
 

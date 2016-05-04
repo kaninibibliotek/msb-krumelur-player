@@ -21,22 +21,7 @@ var player = (function() {
   var hasFullMask = false;
 
   maskVertices.forEach(function(vertices) {
-    var graphics = new PIXI.Graphics();
-    var polygon  = [];
-
-    vertices.forEach(function(vertex) {
-      polygon.push(vertex.x);
-      polygon.push(vertex.y);
-    });
-
-    graphics.lineStyle(1, 0x0000FF, 1);
-    graphics.beginFill(0xFF0000, 1);
-
-    graphics.drawPolygon(polygon);
-
-    graphics.endFill();
-
-    stage.addActor(new Scenery(graphics, 2));
+    stage.addActor(new Scenery(vertices));
   });
 
   // Draw loop
@@ -69,7 +54,7 @@ var player = (function() {
   // "Server" "communication"
   function addKrumelur(json) {
     loadImage('../images/bros.jpg', function(texture) {
-      stage.addActor(new Krumelur(texture, JSON.parse(json), 0));
+      stage.addActor(new Krumelur(texture, JSON.parse(json)));
     });
   }
 
@@ -119,22 +104,7 @@ var player = (function() {
 
       stage.removeActor(testMask);
 
-      var graphics = new PIXI.Graphics();
-      graphics.lineStyle(2, 0x00FF00, 1);
-
-      var i;
-
-      for (i = 0; i < testMaskVertices.length; i++) {
-        graphics.drawEllipse(testMaskVertices[i].x, testMaskVertices[i].y, 5, 5);
-      }
-
-      graphics.moveTo(testMaskVertices[0].x, testMaskVertices[0].y);
-
-      for (i = 1; i < testMaskVertices.length; i++) {
-        graphics.lineTo(testMaskVertices[i].x, testMaskVertices[i].y);
-      }
-
-      testMask = new Scenery(graphics, 2);
+      testMask = new TestMask(testMaskVertices);
 
       stage.addActor(testMask);
 
