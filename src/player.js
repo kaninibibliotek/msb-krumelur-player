@@ -40,11 +40,6 @@ var player = (function() {
       masterSize = Math.max(0.1, Math.min(newSize, 2));
     },
 
-    // TODO should ask loader for stuff instead
-    addActor: function(actor) {
-      stage.addActor(actor);
-    },
-
     showScenery: function() {
       stage.showScenery();
     },

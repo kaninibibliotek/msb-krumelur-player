@@ -4,20 +4,18 @@ function Krumelur(texture, animation) {
   this.animation = animation;
   this.zIndex    = 0;
 
-  this.anchor.set(0.5, 0.5);
-
-  this.reset();
-}
-
-Krumelur.prototype = Object.create(PIXI.Sprite.prototype);
-
-Krumelur.prototype.reset = function() {
-  this.frame = 0;
-
   this.positionIdx = 0;
   this.scaleIdx    = 0;
   this.rotationIdx = 0;
-};
+
+  this.frame = 0;
+
+  this.anchor.set(0.5, 0.5);
+
+  this.done = false;
+}
+
+Krumelur.prototype = Object.create(PIXI.Sprite.prototype);
 
 Krumelur.prototype.update = function(frameDelta, size) {
   this.frame += frameDelta;
@@ -50,6 +48,6 @@ Krumelur.prototype.update = function(frameDelta, size) {
   this.rotation = rotation / 180 * Math.PI;
 
   if (this.frame >= this.animation.duration) {
-    this.reset();
+    this.done = true;
   }
 };
