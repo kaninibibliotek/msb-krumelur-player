@@ -22,6 +22,10 @@ var loader = (function() {
 
   return {
     requestActors: function(amount, callback) {
+      if (amount === 0) {
+        return;
+      }
+
       request.onreadystatechange = function() {
         if (request.readyState === 1) {
           request.send();

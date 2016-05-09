@@ -21,13 +21,29 @@ var player = (function() {
     stage.addActor(new Scenery(vertices));
   });
 
+  function onReceivedActors(actors) {
+    for (var i = 0; i < actors.length; i++) {
+      stage.addActor(actors[i]);
+    }
+  }
+
   function draw() {
     requestAnimationFrame(draw);
 
     stage.update(masterSpeed, masterSize);
 
+    var done = stage.getDoneActors();
+
+    for (var i = 0; i < done.length; i++) {
+      stage.removeActor(done[i]);
+    }
+
+    loader.requestActors(done.length, onReceivedActors);
+
     renderer.render(stage);
   }
+
+  loader.requestActors(10, onReceivedActors);
 
   requestAnimationFrame(draw);
 
