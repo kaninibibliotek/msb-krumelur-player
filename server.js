@@ -33,8 +33,8 @@ var app = express();
 
 app.use(express.static(__dirname));
 
-app.get('/krumelurer/:amount', function(req, res) {
-  var amount = parseInt(req.params.amount);
+app.get('/krumelurer', function(req, res) {
+  var amount = parseInt(req.query.amount);
 
   console.log("GET krumelurer", amount);
 
