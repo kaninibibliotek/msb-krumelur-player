@@ -1,5 +1,7 @@
 var player = (function() {
 
+  var MAX_KRUMELURER = 10;
+
   var renderer = PIXI.autoDetectRenderer(
     5760,
     1080,
@@ -22,9 +24,15 @@ var player = (function() {
   });
 
   function onReceivedActors(actors) {
-    for (var i = 0; i < actors.length; i++) {
-      stage.addActor(actors[i]);
-    }
+    var index = 0;
+
+    var id = setInterval(function() {
+      stage.addActor(actors[index]);
+
+      if (++index >= actors.length) {
+        clearInterval(id);
+      }
+    }, 1000);
   }
 
   function draw() {
@@ -38,12 +46,16 @@ var player = (function() {
       stage.removeActor(done[i]);
     }
 
-    loader.requestActors(done.length, onReceivedActors);
-
     renderer.render(stage);
   }
 
-  loader.requestActors(10, onReceivedActors);
+  setInterval(function() {
+    var amount = Math.max(0, MAX_KRUMELURER - stage.getKrumelurer().length);
+
+    loader.requestActors(amount, onReceivedActors);
+  }, 5000);
+
+  loader.requestActors(MAX_KRUMELURER, onReceivedActors);
 
   requestAnimationFrame(draw);
 

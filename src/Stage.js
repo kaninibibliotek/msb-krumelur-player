@@ -41,3 +41,9 @@ Stage.prototype.hideScenery = function() {
     }
   })
 };
+
+Stage.prototype.getKrumelurer = function() {
+  return this.children.filter(function(actor) {
+    return actor instanceof Krumelur;
+  });
+};

@@ -1,11 +1,5 @@
 var loader = (function() {
 
-  var behaviors = [
-    'http://localhost:3000/behaviors/varelsen.json',
-    'http://localhost:3000/behaviors/anim1.json',
-    'http://localhost:3000/behaviors/anim2.json'
-  ];
-
   var request = new XMLHttpRequest();
 
   function loadImage(path, onLoad) {
@@ -34,22 +28,18 @@ var loader = (function() {
         if (request.readyState === 4 && request.status == 200) {
           var actors = [];
 
-          loadImage('../images/bros.jpg', function(texture) {
-            actors.push(new Krumelur(texture, JSON.parse(request.response)));
+          loadImage('/images/bros.jpg', function(texture) {
+            var krumelurer = JSON.parse(request.response);
+
+            for (var i = 0; i < krumelurer.length; i++) {
+              actors.push(new Krumelur(texture, krumelurer[i]));
+            }
             callback(actors);
           });
         }
       };
 
-      var count = 0;
-
-      var intervalId = setInterval(function() {
-        request.open('GET', behaviors[Math.floor(Math.random() * behaviors.length)], true);
-
-        if (++count >= amount) {
-          clearInterval(intervalId);
-        }
-      }, 1000);
+      request.open('GET', '/krumelurer/' + amount, true);
     }
   };
 })();
