@@ -41,6 +41,8 @@ app.get('/krumelurer', function(req, res) {
   res.send(getRandomKrumelurer(amount));
 });
 
-app.listen(3000, function() {
-  console.log("Serving at 3000...");
+var port = process.env.PORT || 8000;
+
+app.listen(port, function() {
+  console.log("Serving msb-krumelur-player at " + port);
 });
