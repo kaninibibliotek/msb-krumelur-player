@@ -1,4 +1,5 @@
 function Krumelur(texture, animation) {
+  // Inherits from PIXI.Sprite
   PIXI.Sprite.call(this, texture);
 
   this.animation = animation;

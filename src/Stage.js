@@ -1,4 +1,5 @@
 function Stage() {
+  // Inherits from PIXI.Container
   PIXI.Container.call(this);
 }
 
