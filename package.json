@@ -3,7 +3,8 @@
     "express": "^4.13.4"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "deploy": "git push heroku master"
   },
   "name": "msb-krumelur-player",
   "description": "### Setup ```sh $ npm install ```",
