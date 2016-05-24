@@ -1,4 +1,5 @@
 function Scenery(vertices) {
+  // Inherits from PIXI.Graphics
   PIXI.Graphics.call(this);
 
   this.polygon = [];
