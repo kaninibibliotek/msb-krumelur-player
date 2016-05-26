@@ -39,7 +39,7 @@ var loader = (function() {
         }
       };
 
-      request.open('GET', '/krumelurer?amount=' + amount, true);
+      request.open('GET', constants.URL_RANDOM + amount, true);
     }
   };
 })();

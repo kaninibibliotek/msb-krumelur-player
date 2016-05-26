@@ -1,7 +1,5 @@
 var player = (function() {
 
-  var MAX_KRUMELURER = 10;
-
   var renderer = PIXI.autoDetectRenderer(
     5760,
     1080,
@@ -50,12 +48,12 @@ var player = (function() {
   }
 
   setInterval(function() {
-    var amount = Math.max(0, MAX_KRUMELURER - stage.getKrumelurer().length);
+    var amount = Math.max(0, constants.MAX_KRUMELURER - stage.getKrumelurer().length);
 
     loader.requestActors(amount, onReceivedActors);
   }, 5000);
 
-  loader.requestActors(MAX_KRUMELURER, onReceivedActors);
+  loader.requestActors(constants.MAX_KRUMELURER, onReceivedActors);
 
   requestAnimationFrame(draw);
 
