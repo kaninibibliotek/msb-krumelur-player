@@ -28,7 +28,7 @@ var loader = (function() {
         if (request.readyState === 4 && request.status == 200) {
           var actors = [];
 
-          loadImage('/images/bros.jpg', function(texture) {
+          loadImage('images/bros.jpg', function(texture) {
             var krumelurer = JSON.parse(request.response);
 
             for (var i = 0; i < krumelurer.length; i++) {
@@ -39,7 +39,7 @@ var loader = (function() {
         }
       };
 
-      request.open('GET', '/krumelurer?amount=' + amount, true);
+      request.open('GET', constants.URL_RANDOM + amount, true);
     }
   };
 })();
