@@ -14,10 +14,6 @@ var loader = (function() {
     }
   }
 
-  function extractBehaviorFromName(name) {
-    return /_([^_]+)\.png$/.exec(name)[1];
-  }
-
   return {
     requestActors: function(amount, callback) {
       if (amount === 0) {
@@ -30,18 +26,17 @@ var loader = (function() {
         }
 
         if (request.readyState === 4 && request.status == 200) {
-          var paths = JSON.parse(request.response);
+          var krumelurs = JSON.parse(request.response).results;
 
-          for (var i = 0; i < paths.length; i++) {
-            var path = paths[i];
-            var behaviorString = extractBehaviorFromName(path);
-            var behavior = __behaviors__[behaviorString];
+          for (var i = 0; i < krumelurs.length; i++) {
+            var url      = krumelurs[i].url;
+            var behavior = __behaviors__[krumelurs[i].behavior];
 
             if (!behavior) {
               behavior = __behaviors__.calm;
             }
 
-            loadImage(path, function(texture) {
+            loadImage(url, function(texture) {
               callback(new Krumelur(texture, behavior));
             });
           }
