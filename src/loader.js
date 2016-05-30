@@ -26,16 +26,16 @@ var loader = (function() {
         }
 
         if (request.readyState === 4 && request.status == 200) {
-          var actors = [];
+          var paths = JSON.parse(request.response);
 
-          loadImage('images/bros.jpg', function(texture) {
-            var krumelurer = JSON.parse(request.response);
+          for (var i = 0; i < paths.length; i++) {
+            var path = paths[i];
+            var behavior = /_([^_]+)\.png$/.exec(path)[1];
 
-            for (var i = 0; i < krumelurer.length; i++) {
-              actors.push(new Krumelur(texture, krumelurer[i]));
-            }
-            callback(actors);
-          });
+            loadImage(path, function(texture) {
+              callback(new Krumelur(texture, __behaviors__[behavior]));
+            });
+          }
         }
       };
 

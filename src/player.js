@@ -1,8 +1,8 @@
 var player = (function() {
 
   var renderer = PIXI.autoDetectRenderer(
-    5760,
-    1080,
+    constants.DISPLAY_WIDTH,
+    constants.DISPLAY_HEIGHT,
     {
       view:        document.getElementsByTagName('canvas')[0],
       transparent: true
@@ -17,21 +17,11 @@ var player = (function() {
   var masterSpeed = 1;
   var masterSize  = 1;
 
+  var queue = [];
+
   maskVertices.forEach(function(vertices) {
     stage.addActor(new Scenery(vertices));
   });
-
-  function onReceivedActors(actors) {
-    var index = 0;
-
-    var id = setInterval(function() {
-      stage.addActor(actors[index]);
-
-      if (++index >= actors.length) {
-        clearInterval(id);
-      }
-    }, 1000);
-  }
 
   function draw() {
     requestAnimationFrame(draw);
@@ -47,13 +37,25 @@ var player = (function() {
     renderer.render(stage);
   }
 
+  // Request new krumelurs at regular intervals
   setInterval(function() {
     var amount = Math.max(0, constants.MAX_KRUMELURER - stage.getKrumelurer().length);
 
-    loader.requestActors(amount, onReceivedActors);
-  }, 5000);
+    loader.requestActors(amount, onReceivedActor);
+  }, constants.REQUEST_INTERVAL);
 
-  loader.requestActors(constants.MAX_KRUMELURER, onReceivedActors);
+  // Add queued krumelur at reqular intervals
+  setInterval(function() {
+    if (queue.length > 0) {
+      stage.addActor(queue.shift());
+    }
+  }, constants.ADD_INTERVAL);
+
+  loader.requestActors(constants.MAX_KRUMELURER, onReceivedActor);
+
+  function onReceivedActor(actor) {
+    queue.push(actor);
+  }
 
   requestAnimationFrame(draw);
 

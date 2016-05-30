@@ -1,4 +1,4 @@
-window.__behaviors__.calm = {
+__behaviors__.calm = {
   "duration": 600,
   "positions": [
     {
@@ -72,4 +72,4 @@ window.__behaviors__.calm = {
       "rotation": 180
     }
   ]
-}
+};

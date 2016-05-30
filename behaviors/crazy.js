@@ -1,4 +1,4 @@
-window.__behaviors__.crazy= {
+__behaviors__.crazy = {
   "duration": 600,
   "positions": [
     {
@@ -72,4 +72,4 @@ window.__behaviors__.crazy= {
       "rotation": 180
     }
   ]
-}
+};
