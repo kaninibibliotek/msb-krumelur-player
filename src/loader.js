@@ -29,7 +29,7 @@ var loader = (function() {
           var krumelurs = JSON.parse(request.response).results;
 
           for (var i = 0; i < krumelurs.length; i++) {
-            var url      = krumelurs[i].url;
+            var url      = 'images/tux.png'; //krumelurs[i].url;
             var behavior = __behaviors__[krumelurs[i].behavior];
 
             if (!behavior) {
