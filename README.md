@@ -1,14 +1,9 @@
 # Krumelur Player
 
-### Setup
-```sh
-$ npm install
-```
-
 ### Development
+Start msb-chamberlain server
 ```sh
-$ npm start
-$ open http://localhost:3000
+$ open http://localhost:3000/msb-krumelur-player
 ```
 
 ### Converting After Effects Motion Paths to JSON
