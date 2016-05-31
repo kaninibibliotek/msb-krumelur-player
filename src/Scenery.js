@@ -9,7 +9,7 @@ function Scenery(vertices) {
     this.polygon.push(vertices[i].y);
   }
 
-  this.beginFill(0xFFFFFF, 1);
+  this.beginFill(0x000000, 1);
 
   this.drawPolygon(this.polygon);
 
