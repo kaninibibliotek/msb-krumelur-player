@@ -10,7 +10,7 @@ $ open http://localhost:3000/msb-krumelur-player
 ```sh
 $ open http://localhost:3000/msb-krumelur-player/?dev&name=[desired krumelur file name]&behavior=[desired behavior]
 ```
-The desired krumelur with the desired behavior will appear. Press A to add it again. Press C to remove all krumelurer.
+The desired krumelur with the desired behavior will appear. Press <kbd>A</kbd> to add it again. Press <kbd>C</kbd> to remove all krumelurer.
 
 ### Converting After Effects Motion Paths to JSON
 ```sh
