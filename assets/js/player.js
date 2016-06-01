@@ -63,7 +63,7 @@ var player = (function() {
 
   function addTestKrumelur() {
     var imageUrl = 'files/' + locationUtils.getQueryValue('name');
-    var behavior = __behaviors__[locationUtils.getQueryValue('behavior')];
+    var behavior = window.behaviors[locationUtils.getQueryValue('behavior')];
 
     if (imageUrl && behavior) {
       loader.createKrumelur(imageUrl, behavior, function(krumelur) {
