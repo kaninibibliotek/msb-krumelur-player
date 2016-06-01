@@ -48,3 +48,9 @@ Stage.prototype.getKrumelurer = function() {
     return actor instanceof Krumelur;
   });
 };
+
+Stage.prototype.clearKrumelurer = function() {
+  this.children = this.children.filter(function(actor) {
+    return !(actor instanceof Krumelur);
+  });
+};
