@@ -1,12 +1,12 @@
 # Krumelur Player
 
-### Development
+## Development
 Start msb-chamberlain server
 ```sh
 $ open http://localhost:3000/msb-krumelur-player
 ```
 
-## Testing a krumelur motion path
+### Testing a krumelur motion path
 ```sh
 $ open http://localhost:3000/msb-krumelur-player/?dev&name=[desired krumelur file name]&behavior=[desired behavior]
 ```
