@@ -1,4 +1,4 @@
-__behaviors__.tired = {
+{
   "duration": 259.2,
   "positions": [
     {
@@ -142,4 +142,4 @@ __behaviors__.tired = {
       "scale": 14.011
     }
   ]
-};
+}

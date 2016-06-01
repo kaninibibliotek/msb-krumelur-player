@@ -28,12 +28,10 @@
             <textarea class="mask-json"></textarea>
         </div>
     </body>
-
-    <!-- ADD BEHAVIORS HERE -->
-    <script src="assets/behaviors/index.js"></script>
-    <script src="assets/behaviors/crazy.js"></script>
-    <script src="assets/behaviors/calm.js"></script>
-    <script src="assets/behaviors/tired.js"></script>
+    <script>
+      // Mask and behavior data added by server
+      window.behaviors = <%= behaviors %>;
+    </script>
 
     <!-- OTHER SCRIPTS -->
     <script src="assets/js/pixi.min.js"></script>

@@ -36,10 +36,10 @@ var loader = (function() {
 
           for (var i = 0; i < krumelurs.length; i++) {
             var url      = krumelurs[i].url;
-            var behavior = __behaviors__[krumelurs[i].behavior];
+            var behavior = window.behaviors[krumelurs[i].behavior];
 
             if (!behavior) {
-              behavior = __behaviors__.calm;
+              behavior = window.behaviors[constants.DEFAULT_BEHAVIOR];
             }
 
             loadImage(url, function(texture) {

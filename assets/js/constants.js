@@ -7,5 +7,7 @@ var constants = {
   REQUEST_INTERVAL: 5000, //ms
 
   URL_LATEST: '/api/krumelur/latest/',
-  URL_RANDOM: '/api/krumelur/random/'
+  URL_RANDOM: '/api/krumelur/random/',
+
+  DEFAULT_BEHAVIOR: 'calm',
 };
