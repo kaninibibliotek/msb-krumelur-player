@@ -1,7 +1,18 @@
 document.addEventListener('keydown', function(ev) {
   switch (ev.keyCode) {
+    case 65: // a
+      if (locationUtils.isDev()) {
+        player.addTestKrumelur();
+      }
+
+      break;
+    case 67: // c
+      player.clearKrumelurer();
+
+      break;
     case 68: // d
       settings.toggle();
+
       break;
   }
 });

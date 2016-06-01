@@ -15,6 +15,12 @@ var loader = (function() {
   }
 
   return {
+    createKrumelur: function(imageUrl, behavior, callback) {
+      loadImage(imageUrl, function(texture) {
+        callback(new Krumelur(texture, behavior));
+      });
+    },
+
     requestActors: function(amount, callback) {
       if (amount === 0) {
         return;

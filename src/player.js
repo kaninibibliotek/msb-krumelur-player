@@ -37,24 +37,39 @@ var player = (function() {
     renderer.render(stage);
   }
 
-  // Request new krumelurs at regular intervals
-  setInterval(function() {
-    var amount = Math.max(0, constants.MAX_KRUMELURER - stage.getKrumelurer().length);
+  if (locationUtils.isDev()) {
+    addTestKrumelur();
+  } else {
+    // Request new krumelurs at regular intervals
+    setInterval(function() {
+      var amount = Math.max(0, constants.MAX_KRUMELURER - stage.getKrumelurer().length);
 
-    loader.requestActors(amount, onReceivedActor);
-  }, constants.REQUEST_INTERVAL);
+      loader.requestActors(amount, onReceivedActor);
+    }, constants.REQUEST_INTERVAL);
 
-  // Add queued krumelur at reqular intervals
-  setInterval(function() {
-    if (queue.length > 0) {
-      stage.addActor(queue.shift());
-    }
-  }, constants.ADD_INTERVAL);
+    // Add queued krumelur at reqular intervals
+    setInterval(function() {
+      if (queue.length > 0) {
+        stage.addActor(queue.shift());
+      }
+    }, constants.ADD_INTERVAL);
 
-  loader.requestActors(constants.MAX_KRUMELURER, onReceivedActor);
+    loader.requestActors(constants.MAX_KRUMELURER, onReceivedActor);
+  }
 
   function onReceivedActor(actor) {
     queue.push(actor);
+  }
+
+  function addTestKrumelur() {
+    var imageUrl = 'krumelurer/' + locationUtils.getQueryValue('name');
+    var behavior = __behaviors__[locationUtils.getQueryValue('behavior')];
+
+    if (imageUrl && behavior) {
+      loader.createKrumelur(imageUrl, behavior, function(krumelur) {
+        stage.addActor(krumelur);
+      });
+    }
   }
 
   requestAnimationFrame(draw);
@@ -95,6 +110,14 @@ var player = (function() {
       stage.removeActor(testMask);
 
       testMaskVertices = [];
+    },
+
+    addTestKrumelur: function() {
+      addTestKrumelur();
+    },
+
+    clearKrumelurer: function() {
+      stage.clearKrumelurer();
     }
-  }
+  };
 })();
