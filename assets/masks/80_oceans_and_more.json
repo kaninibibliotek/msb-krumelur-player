@@ -1,0 +1,10 @@
+{
+  zIndex: 90,
+  debugColor: 'red',
+  polygons: [
+    {
+      x: 10,
+      y: 10
+    }
+  ]
+}
