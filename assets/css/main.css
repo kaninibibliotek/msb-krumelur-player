@@ -12,7 +12,7 @@ canvas {
 div.settings {
     position: fixed;
     top: 200px;
-    left: 10px;
+    left: 80px;
     width: 300px;
     height: 600px;
     background: rgba(180, 100, 150, 0.8);
