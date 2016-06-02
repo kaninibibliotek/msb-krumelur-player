@@ -15,7 +15,7 @@ function TestMask(vertices) {
     this.lineTo(vertices[i].x, vertices[i].y);
   }
 
-  this.zIndex = 2;
+  this.zIndex = 1000;
 }
 
 TestMask.prototype = Object.create(PIXI.Graphics.prototype);
