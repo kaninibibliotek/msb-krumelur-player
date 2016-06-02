@@ -1,6 +1,8 @@
 var constants = {
-  DISPLAY_WIDTH: 1360 * 3,
-  DISPLAY_HEIGHT: 768,
+  // These dimensions fit the canvas nicely on the wall.
+  // Actual projection is 4080x768
+  CANVAS_WIDTH: 3930,
+  CANVAS_HEIGHT: 760,
 
   MAX_KRUMELURER: 10,
   ADD_INTERVAL: 1000, //ms

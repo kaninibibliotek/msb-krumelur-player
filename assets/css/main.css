@@ -6,14 +6,7 @@ body {
 canvas {
     position: absolute;
     top: 0;
-    left: 0;
-    border: 3px solid red;
-}
-
-img {
-    position: absolute;
-    top: 0;
-    left: 0;
+    left: 70px;
 }
 
 div.settings {

@@ -1,8 +1,8 @@
 var player = (function() {
 
   var renderer = PIXI.autoDetectRenderer(
-    constants.DISPLAY_WIDTH,
-    constants.DISPLAY_HEIGHT,
+    constants.CANVAS_WIDTH,
+    constants.CANVAS_HEIGHT,
     {
       view:        document.getElementsByTagName('canvas')[0],
       transparent: true
