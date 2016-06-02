@@ -20,7 +20,7 @@ var player = (function() {
   var queue = [];
 
   masks.forEach(function(mask) {
-    stage.addActor(new Scenery(mask.vertices, mask.z));
+    stage.addActor(new Scenery(mask.vertices, mask.z, mask.name));
   });
 
   function draw() {
@@ -99,6 +99,14 @@ var player = (function() {
 
     hideSceneryLayer: function(zIndex) {
       stage.hideSceneryLayer(zIndex);
+    },
+
+    showSceneryWithName: function(name) {
+      stage.showSceneryWithName(name);
+    },
+
+    hideSceneryWithName: function(name) {
+      stage.hideSceneryWithName(name);
     },
 
     addTestMaskPoint: function(x, y) {

@@ -1,21 +1,11 @@
 var settings = (function() {
   var settingsElem = document.getElementsByClassName('settings')[0];
 
+  // Sliders
   var speedInput = settingsElem.getElementsByClassName('input-speed')[0];
   var sizeInput  = settingsElem.getElementsByClassName('input-size')[0];
   var speedLabel = settingsElem.getElementsByClassName('label-speed')[0];
   var sizeLabel  = settingsElem.getElementsByClassName('label-size')[0];
-
-  var toggleMasksCheckBox = settingsElem.getElementsByClassName('toggle-masks')[0];
-  var maskJsonElem        = settingsElem.getElementsByClassName('mask-json')[0];
-
-  var selectButtonElem = settingsElem.getElementsByClassName('button-select')[0];
-
-  selectButtonElem.addEventListener('click', function(ev) {
-    maskJsonElem.select();
-  });
-
-  var hidden = true;
 
   function setSpeedLabel(value) {
     speedLabel.innerHTML = value;
@@ -38,6 +28,59 @@ var settings = (function() {
     setSizeLabel(sizeInput.value);
   });
 
+  // Toggle for all masks
+  var toggleMasksCheckBox = settingsElem.getElementsByClassName('toggle-masks')[0];
+
+  // Toggles for masks by name or layer
+  var selectName = settingsElem.getElementsByClassName('mask-name-select')[0];
+  var showName = settingsElem.getElementsByClassName('mask-name-show')[0];
+  var hideName = settingsElem.getElementsByClassName('mask-name-hide')[0];
+
+  var selectLayer = settingsElem.getElementsByClassName('mask-layer-select')[0];
+  var showLayer = settingsElem.getElementsByClassName('mask-layer-show')[0];
+  var hideLayer = settingsElem.getElementsByClassName('mask-layer-hide')[0];
+
+  // Populate selection lists
+  var uniqueZ = [];
+
+  masks.forEach(function(mask) {
+    selectName.add(new Option(mask.name));
+
+    if (uniqueZ.indexOf(mask.z) === -1) {
+      uniqueZ.push(mask.z);
+    }
+  });
+
+  uniqueZ.forEach(function(z) {
+    selectLayer.add(new Option(z));
+  });
+
+  // Show/hide by name
+  showName.addEventListener('click', function(ev) {
+    player.showSceneryWithName(selectName.selectedOptions[0].text);
+  });
+
+  hideName.addEventListener('click', function(ev) {
+    player.hideSceneryWithName(selectName.selectedOptions[0].text);
+  });
+
+  // Show/hide by layer
+  showLayer.addEventListener('click', function(ev) {
+    player.showSceneryLayer(parseInt(selectLayer.selectedOptions[0].text));
+  });
+
+  hideLayer.addEventListener('click', function(ev) {
+    player.hideSceneryLayer(parseInt(selectLayer.selectedOptions[0].text));
+  });
+
+  // Mask JSON data
+  var maskJsonElem     = settingsElem.getElementsByClassName('mask-json')[0];
+  var selectButtonElem = settingsElem.getElementsByClassName('button-select')[0];
+
+  selectButtonElem.addEventListener('click', function(ev) {
+    maskJsonElem.select();
+  });
+
   toggleMasksCheckBox.addEventListener('change', function(ev) {
     if (toggleMasksCheckBox.checked) {
       player.showScenery();
@@ -45,6 +88,9 @@ var settings = (function() {
       player.hideScenery();
     }
   });
+
+  // API
+  var hidden = true;
 
   return {
     toggle: function() {

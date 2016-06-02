@@ -59,6 +59,22 @@ Stage.prototype.hideSceneryLayer = function(zIndex) {
   })
 };
 
+Stage.prototype.showSceneryWithName = function(name) {
+  this.children.forEach(function(actor) {
+    if (actor instanceof Scenery && actor.name === name.toLowerCase()) {
+      actor.show();
+    }
+  })
+};
+
+Stage.prototype.hideSceneryWithName = function(name) {
+  this.children.forEach(function(actor) {
+    if (actor instanceof Scenery && actor.name === name.toLowerCase()) {
+      actor.hide();
+    }
+  })
+};
+
 Stage.prototype.getKrumelurer = function() {
   return this.children.filter(function(actor) {
     return actor instanceof Krumelur;
