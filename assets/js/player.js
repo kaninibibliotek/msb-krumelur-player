@@ -20,7 +20,7 @@ var player = (function() {
   var queue = [];
 
   masks.forEach(function(mask) {
-    stage.addActor(new Scenery(mask.vertices, mask.z, mask.name));
+    stage.addActor(new Scenery(mask.vertices, mask.z, mask.color, mask.name));
   });
 
   function draw() {

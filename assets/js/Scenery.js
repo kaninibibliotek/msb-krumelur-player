@@ -1,4 +1,4 @@
-function Scenery(vertices, zIndex, name) {
+function Scenery(vertices, zIndex, color, name) {
   // Inherits from PIXI.Graphics
   PIXI.Graphics.call(this);
 
@@ -12,7 +12,7 @@ function Scenery(vertices, zIndex, name) {
   this.zIndex = zIndex;
   this.name   = name.toLowerCase();
 
-  this.showColor = 0xFFFFFF;
+  this.showColor = color;
   this.hideColor = 0x000000;
 
   this.setColor(this.hideColor);
