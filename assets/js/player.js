@@ -38,7 +38,7 @@ var player = (function() {
   }
 
   if (locationUtils.isDev()) {
-    addTestKrumelur();
+    // addTestKrumelur();
   } else {
     // Request new krumelurs at regular intervals
     setInterval(function() {
@@ -74,6 +74,8 @@ var player = (function() {
 
   requestAnimationFrame(draw);
 
+  stage.showScenery();
+
   return {
     setSpeed: function(newSpeed) {
       masterSpeed = Math.max(0.1, Math.min(newSpeed, 2));
@@ -104,6 +106,18 @@ var player = (function() {
         x: x,
         y: y
       });
+
+      stage.removeActor(testMask);
+
+      testMask = new TestMask(testMaskVertices);
+
+      stage.addActor(testMask);
+
+      settings.showJsonMask(testMaskVertices);
+    },
+
+    undoTestMaskPoint: function() {
+      testMaskVertices.pop();
 
       stage.removeActor(testMask);
 
