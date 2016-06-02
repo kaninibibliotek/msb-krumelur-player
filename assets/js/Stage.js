@@ -30,7 +30,7 @@ Stage.prototype.getDoneActors = function() {
 Stage.prototype.showScenery = function() {
   this.children.forEach(function(actor) {
     if (actor instanceof Scenery) {
-      actor.changeColor(0xFFFFFF);
+      actor.show();
     }
   })
 };
@@ -38,7 +38,23 @@ Stage.prototype.showScenery = function() {
 Stage.prototype.hideScenery = function() {
   this.children.forEach(function(actor) {
     if (actor instanceof Scenery) {
-      actor.changeColor(0x000000);
+      actor.hide();
+    }
+  })
+};
+
+Stage.prototype.showSceneryLayer = function(zIndex) {
+  this.children.forEach(function(actor) {
+    if (actor instanceof Scenery && actor.zIndex === zIndex) {
+      actor.show();
+    }
+  })
+};
+
+Stage.prototype.hideSceneryLayer = function(zIndex) {
+  this.children.forEach(function(actor) {
+    if (actor instanceof Scenery && actor.zIndex === zIndex) {
+      actor.hide();
     }
   })
 };

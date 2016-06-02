@@ -91,6 +91,14 @@ var player = (function() {
       stage.hideScenery();
     },
 
+    showSceneryLayer: function(zIndex) {
+      stage.showSceneryLayer(zIndex);
+    },
+
+    hideSceneryLayer: function(zIndex) {
+      stage.hideSceneryLayer(zIndex);
+    },
+
     addTestMaskPoint: function(x, y) {
       testMaskVertices.push({
         x: x,

@@ -9,13 +9,12 @@ function Scenery(vertices, zIndex) {
     this.polygon.push(vertices[i].y);
   }
 
-  this.beginFill(0x000000, 1);
-
-  this.drawPolygon(this.polygon);
-
-  this.endFill();
-
   this.zIndex = zIndex;
+
+  this.showColor = 0xFF0000;
+  this.hideColor = 0x000000;
+
+  this.changeColor(this.hideColor);
 }
 
 Scenery.prototype = Object.create(PIXI.Graphics.prototype);
@@ -32,4 +31,12 @@ Scenery.prototype.changeColor = function(color) {
   this.drawPolygon(this.polygon);
 
   this.endFill();
+};
+
+Scenery.prototype.show = function() {
+  this.changeColor(this.showColor);
+};
+
+Scenery.prototype.hide = function() {
+  this.changeColor(this.hideColor);
 };
