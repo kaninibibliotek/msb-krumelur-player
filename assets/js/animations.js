@@ -14,6 +14,7 @@ var animationPositionAtFrame = function(animation, index, frame) {
     };
   }
 
+  // TODO probably don't interpolate z?
   return {
     x: lerp(current.frame, current.x, next.frame, next.x, frame),
     y: lerp(current.frame, current.y, next.frame, next.y, frame),
