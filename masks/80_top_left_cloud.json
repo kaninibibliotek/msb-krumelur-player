@@ -1,6 +1,7 @@
 {
   "name": "Top Left Cloud",
   "z": 80,
+  "color": "0x0000FF",
   "vertices":
   [
     {

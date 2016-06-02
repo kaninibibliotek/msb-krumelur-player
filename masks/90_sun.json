@@ -1,6 +1,7 @@
 {
   "name": "Sun",
   "z": 90,
+  "color": "0xFFFF00",
   "vertices":
   [
     {

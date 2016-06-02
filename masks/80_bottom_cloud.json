@@ -1,6 +1,7 @@
 {
   "name": "Bottom Cloud",
   "z": 80,
+  "color": "0x0000FF",
   "vertices":
   [
     {

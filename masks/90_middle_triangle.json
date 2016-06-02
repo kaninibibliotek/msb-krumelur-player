@@ -1,6 +1,7 @@
 {
   "name": "Middle Triangle",
   "z": 90,
+  "color": "0x00FF00",
   "vertices":
   [
     {

@@ -1,6 +1,7 @@
 {
   "name": "Right Pillar",
   "z": 90,
+  "color": "0xFFFFFF",
   "vertices":
   [
     {
