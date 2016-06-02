@@ -11,7 +11,7 @@ function Scenery(vertices, zIndex) {
 
   this.zIndex = zIndex;
 
-  this.showColor = 0xFF0000;
+  this.showColor = 0xFFFFFF;
   this.hideColor = 0x000000;
 
   this.setColor(this.hideColor);
