@@ -14,7 +14,7 @@ function Scenery(vertices, zIndex) {
   this.showColor = 0xFF0000;
   this.hideColor = 0x000000;
 
-  this.changeColor(this.hideColor);
+  this.setColor(this.hideColor);
 }
 
 Scenery.prototype = Object.create(PIXI.Graphics.prototype);
@@ -23,7 +23,7 @@ Scenery.prototype.update = function() {
   return;
 };
 
-Scenery.prototype.changeColor = function(color) {
+Scenery.prototype.setColor = function(color) {
   this.clear();
 
   this.beginFill(color, 1);
@@ -34,9 +34,9 @@ Scenery.prototype.changeColor = function(color) {
 };
 
 Scenery.prototype.show = function() {
-  this.changeColor(this.showColor);
+  this.setColor(this.showColor);
 };
 
 Scenery.prototype.hide = function() {
-  this.changeColor(this.hideColor);
+  this.setColor(this.hideColor);
 };
