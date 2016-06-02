@@ -1,4 +1,4 @@
-function Scenery(vertices) {
+function Scenery(vertices, zIndex) {
   // Inherits from PIXI.Graphics
   PIXI.Graphics.call(this);
 
@@ -15,7 +15,7 @@ function Scenery(vertices) {
 
   this.endFill();
 
-  this.zIndex = 2;
+  this.zIndex = zIndex;
 }
 
 Scenery.prototype = Object.create(PIXI.Graphics.prototype);

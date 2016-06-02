@@ -19,9 +19,9 @@ var player = (function() {
 
   var queue = [];
 
-  // maskVertices.forEach(function(vertices) {
-  //   stage.addActor(new Scenery(vertices));
-  // });
+  masks.forEach(function(mask) {
+    stage.addActor(new Scenery(mask.vertices, mask.z));
+  });
 
   function draw() {
     requestAnimationFrame(draw);
