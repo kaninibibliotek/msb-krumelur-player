@@ -35,10 +35,14 @@ var settings = (function() {
   var selectName = settingsElem.getElementsByClassName('mask-name-select')[0];
   var showName = settingsElem.getElementsByClassName('mask-name-show')[0];
   var hideName = settingsElem.getElementsByClassName('mask-name-hide')[0];
+  var enableName = settingsElem.getElementsByClassName('mask-name-enable')[0];
+  var disableName = settingsElem.getElementsByClassName('mask-name-disable')[0];
 
   var selectLayer = settingsElem.getElementsByClassName('mask-layer-select')[0];
   var showLayer = settingsElem.getElementsByClassName('mask-layer-show')[0];
   var hideLayer = settingsElem.getElementsByClassName('mask-layer-hide')[0];
+  var enableLayer = settingsElem.getElementsByClassName('mask-layer-enable')[0];
+  var disableLayer = settingsElem.getElementsByClassName('mask-layer-disable')[0];
 
   // Populate selection lists
   var uniqueZ = [];
@@ -64,6 +68,14 @@ var settings = (function() {
     player.hideSceneryWithName(selectName.selectedOptions[0].text);
   });
 
+  enableName.addEventListener('click', function(ev) {
+    player.enableSceneryWithName(selectName.selectedOptions[0].text);
+  });
+
+  disableName.addEventListener('click', function(ev) {
+    player.disableSceneryWithName(selectName.selectedOptions[0].text);
+  });
+
   // Show/hide by layer
   showLayer.addEventListener('click', function(ev) {
     player.showSceneryLayer(parseInt(selectLayer.selectedOptions[0].text));
@@ -71,6 +83,14 @@ var settings = (function() {
 
   hideLayer.addEventListener('click', function(ev) {
     player.hideSceneryLayer(parseInt(selectLayer.selectedOptions[0].text));
+  });
+
+  enableLayer.addEventListener('click', function(ev) {
+    player.enableSceneryLayer(parseInt(selectLayer.selectedOptions[0].text));
+  });
+
+  disableLayer.addEventListener('click', function(ev) {
+    player.disableSceneryLayer(parseInt(selectLayer.selectedOptions[0].text));
   });
 
   // Mask JSON data

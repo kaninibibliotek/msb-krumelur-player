@@ -75,6 +75,38 @@ Stage.prototype.hideSceneryWithName = function(name) {
   })
 };
 
+Stage.prototype.enableSceneryLayer = function(zIndex) {
+  this.children.forEach(function(actor) {
+    if (actor instanceof Scenery && actor.zIndex === zIndex) {
+      actor.enable();
+    }
+  })
+};
+
+Stage.prototype.disableSceneryLayer = function(zIndex) {
+  this.children.forEach(function(actor) {
+    if (actor instanceof Scenery && actor.zIndex === zIndex) {
+      actor.disable();
+    }
+  })
+};
+
+Stage.prototype.enableSceneryWithName = function(name) {
+  this.children.forEach(function(actor) {
+    if (actor instanceof Scenery && actor.name === name.toLowerCase()) {
+      actor.enable();
+    }
+  })
+};
+
+Stage.prototype.disableSceneryWithName = function(name) {
+  this.children.forEach(function(actor) {
+    if (actor instanceof Scenery && actor.name === name.toLowerCase()) {
+      actor.disable();
+    }
+  })
+};
+
 Stage.prototype.getKrumelurer = function() {
   return this.children.filter(function(actor) {
     return actor instanceof Krumelur;

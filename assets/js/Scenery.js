@@ -9,7 +9,7 @@ function Scenery(vertices, zIndex, color, name) {
     this.polygon.push(vertices[i].y);
   }
 
-  this.zIndex = zIndex;
+  this.zIndex = this.originalZ = zIndex;
   this.name   = name.toLowerCase();
 
   this.showColor = color;
@@ -40,4 +40,12 @@ Scenery.prototype.show = function() {
 
 Scenery.prototype.hide = function() {
   this.setColor(this.hideColor);
+};
+
+Scenery.prototype.enable = function() {
+  this.zIndex = this.originalZ;
+};
+
+Scenery.prototype.disable = function() {
+  this.zIndex = -1000;
 };

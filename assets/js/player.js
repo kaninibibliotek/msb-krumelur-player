@@ -105,8 +105,24 @@ var player = (function() {
       stage.showSceneryWithName(name);
     },
 
-    hideSceneryWithName: function(name) {
-      stage.hideSceneryWithName(name);
+    disableSceneryWithName: function(name) {
+      stage.disableSceneryWithName(name);
+    },
+
+    enableSceneryLayer: function(zIndex) {
+      stage.enableSceneryLayer(zIndex);
+    },
+
+    disableSceneryLayer: function(zIndex) {
+      stage.disableSceneryLayer(zIndex);
+    },
+
+    enableSceneryWithName: function(name) {
+      stage.enableSceneryWithName(name);
+    },
+
+    disableSceneryWithName: function(name) {
+      stage.disableSceneryWithName(name);
     },
 
     addTestMaskPoint: function(x, y) {
