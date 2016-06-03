@@ -7,7 +7,20 @@ function Effect(texture, zIndex) {
   this.spriteWidth  = this.baseWidth / 5;
   this.spriteHeight = this.baseHeight / 5;
 
-  this.texture.frame = new PIXI.Rectangle(0, 0, this.spriteWidth, this.spriteHeight);
+  // Build array of Rectangles for each frame
+  this.frames = [];
+
+  for (var row = 0; row < 5; row++) {
+    var y = row * this.spriteHeight;
+
+    for (var col = 0; col < 5; col++) {
+      var x = col * this.spriteWidth;
+
+      this.frames.push(new PIXI.Rectangle(x, y, this.spriteWidth, this.spriteHeight));
+    }
+  }
+
+  this.frameIndex = 0;
 
   this.zIndex = zIndex;
 }
@@ -15,24 +28,12 @@ function Effect(texture, zIndex) {
 Effect.prototype = Object.create(PIXI.Sprite.prototype);
 
 Effect.prototype.update = function(frameDelta, masterSize) {
-  var rectX = this.texture.frame.x + this.spriteWidth;
-  var rectY = this.texture.frame.y;
+  // ???
+  this.frameIndex = (this.frameIndex + frameDelta) % this.frames.length;
 
-  if (rectX >= this.baseWidth) {
-    rectX = 0;
-    rectY += this.spriteHeight;
-  }
+  this.texture.frame = this.frames[this.frameIndex];
 
-  if (rectY >= this.baseHeight) {
-    rectY = 0;
-  }
-
-  this.texture.frame = new PIXI.Rectangle(
-    rectX,
-    rectY,
-    this.spriteWidth,
-    this.spriteHeight
-  );
+  this.position.set(0, 100);
 
   this.scale.set(masterSize, masterSize);
 };

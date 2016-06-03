@@ -15,6 +15,12 @@ var loader = (function() {
   }
 
   return {
+    createEffect: function(imageUrl, callback) {
+      loadImage(imageUrl, function(texture) {
+        callback(new Effect(texture, 1000));
+      });
+    },
+
     createKrumelur: function(imageUrl, behavior, callback) {
       loadImage(imageUrl, function(texture) {
         callback(new Krumelur(texture, behavior));

@@ -23,6 +23,10 @@ var player = (function() {
     stage.addActor(new Scenery(mask.vertices, mask.z, mask.color, mask.name));
   });
 
+  loader.createEffect('/krumelur/assets/images/explosion.png', function(effect) {
+    stage.addActor(effect);
+  });
+
   function draw() {
     requestAnimationFrame(draw);
 
