@@ -110,8 +110,8 @@ var player = (function() {
       stage.showSceneryWithName(name);
     },
 
-    disableSceneryWithName: function(name) {
-      stage.disableSceneryWithName(name);
+    hideSceneryWithName: function(name) {
+      stage.hideSceneryWithName(name);
     },
 
     enableSceneryLayer: function(zIndex) {
