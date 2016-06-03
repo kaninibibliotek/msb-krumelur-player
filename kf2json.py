@@ -1,13 +1,14 @@
 import json
+import re
 import sys
 
 def getKeyframes(inp, header, keys):
-    start = inp.find(header)
+    match = re.search(header, inp)
 
-    if (start == -1):
+    if (match is None):
         raise Exception("No match for %s" % (header))
 
-    lines     = inp[start:].splitlines()[2:]
+    lines     = inp[match.start():].splitlines()[2:]
     keyframes = []
 
     for line in lines:
@@ -27,12 +28,12 @@ def getKeyframes(inp, header, keys):
     return keyframes
 
 def getValue(inp, header):
-    start = inp.find(header)
+    match = re.search(header, inp)
 
-    if (start == -1):
+    if (match is None):
         raise Exception("No match for %s" % (header))
 
-    line = inp[start:].splitlines()[0]
+    line = inp[match.start():].splitlines()[0]
 
     return float(line.split()[-1])
 
@@ -46,9 +47,9 @@ def convert(inp, outp, targetFps):
         fpsScale = targetFps / inputFps
 
         jsonData = {
-            "positions": getKeyframes(text, "Transform\tPosition", ["frame", "x", "y", "z"]),
-            "scales":    getKeyframes(text, "Transform\tScale", ["frame", "scale"]),
-            "rotations": getKeyframes(text, "Transform\tRotation", ["frame", "rotation"])
+            "positions": getKeyframes(text, "Transform\s+Position", ["frame", "x", "y", "z"]),
+            "scales":    getKeyframes(text, "Transform\s+Scale", ["frame", "scale"]),
+            "rotations": getKeyframes(text, "Transform\s+Rotation", ["frame", "rotation"])
         }
     except Exception, e:
         print e
