@@ -16,6 +16,9 @@ zColor = {
     0:   "#ff0000"
 }
 
+WIDTH  = 3930
+HEIGHT = 760
+
 def convertDirectory(inDir, outDir):
     files = os.listdir(inDir)
 
@@ -31,7 +34,7 @@ def convert(inp, outp):
 
     outfile = open(outp, "w")
 
-    outfile.write("<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='4080' height='768'>\n")
+    outfile.write("<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='%d' height='%d'>\n" % (WIDTH, HEIGHT))
     outfile.write("\t<polygon points=")
 
     outfile.write("'%s' " % reduce(lambda pts, v: pts + ("%s " % vertexToString(v)), mask["vertices"], ""))
