@@ -20,7 +20,8 @@ var player = (function() {
   var queue = [];
 
   masks.forEach(function(mask) {
-    stage.addActor(new Scenery(mask.vertices, mask.z, mask.color, mask.name));
+    var color = constants.MASK_COLORS[mask.z];
+    stage.addActor(new Scenery(mask.vertices, mask.z, color, mask.name));
   });
 
   loader.createEffect('/krumelur/assets/images/explosion.png', function(effect) {
