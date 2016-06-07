@@ -21,11 +21,11 @@ var player = (function() {
 
   masks.forEach(function(mask) {
     var color = constants.MASK_COLORS[mask.z];
-    stage.addActor(new Scenery(mask.vertices, mask.z, color, mask.name));
+    stage.addMask(new Scenery(mask.vertices, mask.z, color, mask.name));
   });
 
   loader.createEffect('/krumelur/assets/images/explosion.png', function(effect) {
-    stage.addActor(effect);
+    stage.addEffect(effect);
   });
 
   function draw() {
@@ -36,7 +36,7 @@ var player = (function() {
     var done = stage.getDoneActors();
 
     for (var i = 0; i < done.length; i++) {
-      stage.removeActor(done[i]);
+      stage.removeKrumelur(done[i]);
     }
 
     renderer.render(stage);
@@ -55,7 +55,7 @@ var player = (function() {
     // Add queued krumelur at reqular intervals
     setInterval(function() {
       if (queue.length > 0) {
-        stage.addActor(queue.shift());
+        stage.addKrumelur(queue.shift());
       }
     }, constants.ADD_INTERVAL);
 
@@ -72,7 +72,7 @@ var player = (function() {
 
     if (imageUrl && behavior) {
       loader.createKrumelur(imageUrl, behavior, function(krumelur) {
-        stage.addActor(krumelur);
+        stage.addKrumelur(krumelur);
       });
     }
   }
@@ -136,11 +136,11 @@ var player = (function() {
         y: y
       });
 
-      stage.removeActor(testMask);
+      stage.removeMask(testMask);
 
       testMask = new TestMask(testMaskVertices);
 
-      stage.addActor(testMask);
+      stage.addMask(testMask);
 
       settings.showJsonMask(testMaskVertices);
     },
@@ -148,17 +148,17 @@ var player = (function() {
     undoTestMaskPoint: function() {
       testMaskVertices.pop();
 
-      stage.removeActor(testMask);
+      stage.removeMask(testMask);
 
       testMask = new TestMask(testMaskVertices);
 
-      stage.addActor(testMask);
+      stage.addMask(testMask);
 
       settings.showJsonMask(testMaskVertices);
     },
 
     removeTestMask: function() {
-      stage.removeActor(testMask);
+      stage.removeMask(testMask);
 
       testMaskVertices = [];
     },

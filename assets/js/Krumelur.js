@@ -8,10 +8,13 @@ function Krumelur(texture, animation) {
   this.positionIdx = 0;
   this.scaleIdx    = 0;
   this.rotationIdx = 0;
+  this.opacityIdx  = 0;
 
   this.frame = 0;
 
   this.anchor.set(0.5, 0.5);
+
+  this.opacity = 100;
 
   this.done = false;
 }
@@ -24,6 +27,7 @@ Krumelur.prototype.update = function(frameDelta, size) {
   var nextPositionIdx = Math.min(this.positionIdx + 1, this.animation.positions.length - 1);
   var nextScaleIdx    = Math.min(this.scaleIdx + 1, this.animation.scales.length - 1);
   var nextRotationIdx = Math.min(this.rotationIdx + 1, this.animation.rotations.length - 1);
+  var nextOpacityIdx  = Math.min(this.opacityIdx + 1, this.animation.opacities.length - 1);
 
   if (this.frame >= this.animation.positions[nextPositionIdx].frame) {
     this.positionIdx = nextPositionIdx;
@@ -37,9 +41,15 @@ Krumelur.prototype.update = function(frameDelta, size) {
     this.rotationIdx = nextRotationIdx;
   }
 
+  if (this.frame >= this.animation.opacities[nextOpacityIdx].frame) {
+    this.opacityIdx = nextOpacityIdx;
+  }
+
   var position = animationPositionAtFrame(this.animation, this.positionIdx, this.frame);
   var scale    = size * animationScaleAtFrame(this.animation, this.scaleIdx, this.frame) / 100;
   var rotation = animationRotationAtFrame(this.animation, this.rotationIdx, this.frame);
+
+  this.opacity = animationOpacityAtFrame(this.animation, this.opacityIdx, this.frame);
 
   this.position.set(position.x, position.y);
   this.zIndex = position.z;

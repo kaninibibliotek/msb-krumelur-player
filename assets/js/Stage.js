@@ -1,120 +1,158 @@
 function Stage() {
   // Inherits from PIXI.Container
   PIXI.Container.call(this);
+
+  this.krumelurer = [];
+  this.masks = [];
+  this.effects = [];
 }
 
 Stage.prototype = Object.create(PIXI.Container.prototype);
 
-Stage.prototype.addActor = function(actor) {
-  this.addChild(actor);
+Stage.prototype.addKrumelur = function(krumelur) {
+  this.krumelurer.push(krumelur);
+
+  this.addChild(krumelur);
 };
 
-Stage.prototype.removeActor = function(actor) {
-  this.removeChild(actor);
+Stage.prototype.addMask = function(mask) {
+  this.masks.push(mask);
+
+  this.addChild(mask);
+};
+
+Stage.prototype.addEffect = function(effect) {
+  this.effects.push(effect);
+
+  this.addChild(effect);
+};
+
+Stage.prototype.removeKrumelur = function(krumelur) {
+  this.krumelurer.splice(this.krumelurer.indexOf(krumelur), 1);
+
+  this.removeChild(krumelur);
+};
+
+Stage.prototype.removeMask = function(mask) {
+  this.masks.splice(this.masks.indexOf(mask), 1);
+
+  this.removeChild(mask);
+};
+
+Stage.prototype.removeEffect = function(effect) {
+  this.effects.splice(this.effects.indexOf(effect), 1);
+
+  this.removeChild(effect);
 };
 
 Stage.prototype.update = function(frameDelta, masterSize) {
-  for (var i = 0; i < this.children.length; i++) {
-    this.children[i].update(frameDelta, masterSize);
-  }
+  var triggers = [];
+
+  this.krumelurer.forEach(function(krumelur) {
+    krumelur.update(frameDelta, masterSize);
+
+    if (krumelur.opacity !== 100) {
+      triggers.push(krumelur.opacity);
+    }
+  });
+
+  this.effects.forEach(function(effect) {
+    if (triggers.includes(effect.trigger)) {
+      effect.start();
+    }
+
+    effect.update(frameDelta, masterSize);
+  });
 
   this.children = mergeSortBy(this.children, 'zIndex');
 };
 
 Stage.prototype.getDoneActors = function() {
-  return this.children.filter(function(actor) {
+  return this.krumelurer.filter(function(actor) {
     return actor.done;
   });
 };
 
 Stage.prototype.showScenery = function() {
-  this.children.forEach(function(actor) {
-    if (actor instanceof Scenery) {
-      actor.show();
-    }
-  })
+  this.masks.forEach(function(mask) {
+    mask.show();
+  });
 };
 
 Stage.prototype.hideScenery = function() {
-  this.children.forEach(function(actor) {
-    if (actor instanceof Scenery) {
-      actor.hide();
-    }
-  })
+  this.masks.forEach(function(mask) {
+    mask.hide();
+  });
 };
 
 Stage.prototype.showSceneryLayer = function(zIndex) {
-  this.children.forEach(function(actor) {
-    if (actor instanceof Scenery && actor.zIndex === zIndex) {
-      actor.show();
+  this.masks.forEach(function(mask) {
+    if (mask.zIndex === zIndex) {
+      mask.show();
     }
-  })
+  });
 };
 
 Stage.prototype.hideSceneryLayer = function(zIndex) {
-  this.children.forEach(function(actor) {
-    if (actor instanceof Scenery && actor.zIndex === zIndex) {
-      actor.hide();
+  this.masks.forEach(function(mask) {
+    if (mask.zIndex === zIndex) {
+      mask.hide();
     }
-  })
+  });
 };
 
 Stage.prototype.showSceneryWithName = function(name) {
-  this.children.forEach(function(actor) {
-    if (actor instanceof Scenery && actor.name === name.toLowerCase()) {
-      actor.show();
+  this.masks.forEach(function(mask) {
+    if (mask.name === name.toLowerCase()) {
+      mask.show();
     }
-  })
+  });
 };
 
 Stage.prototype.hideSceneryWithName = function(name) {
-  this.children.forEach(function(actor) {
-    if (actor instanceof Scenery && actor.name === name.toLowerCase()) {
-      actor.hide();
+  this.masks.forEach(function(mask) {
+    if (mask.name === name.toLowerCase()) {
+      mask.hide();
     }
-  })
+  });
 };
 
 Stage.prototype.enableSceneryLayer = function(zIndex) {
-  this.children.forEach(function(actor) {
-    if (actor instanceof Scenery && actor.zIndex === zIndex) {
-      actor.enable();
+  this.masks.forEach(function(mask) {
+    if (mask.zIndex === zIndex) {
+      mask.enable();
     }
-  })
+  });
 };
 
 Stage.prototype.disableSceneryLayer = function(zIndex) {
-  this.children.forEach(function(actor) {
-    if (actor instanceof Scenery && actor.zIndex === zIndex) {
-      actor.disable();
+  this.masks.forEach(function(mask) {
+    if (mask.zIndex === zIndex) {
+      mask.disable();
     }
-  })
+  });
 };
 
 Stage.prototype.enableSceneryWithName = function(name) {
-  this.children.forEach(function(actor) {
-    if (actor instanceof Scenery && actor.name === name.toLowerCase()) {
-      actor.enable();
+  this.masks.forEach(function(mask) {
+    if (mask.name === name.toLowerCase()) {
+      mask.enable();
     }
-  })
+  });
 };
 
 Stage.prototype.disableSceneryWithName = function(name) {
-  this.children.forEach(function(actor) {
-    if (actor instanceof Scenery && actor.name === name.toLowerCase()) {
-      actor.disable();
+  this.masks.forEach(function(mask) {
+    if (mask.name === name.toLowerCase()) {
+      mask.disable();
     }
-  })
+  });
 };
 
 Stage.prototype.getKrumelurer = function() {
-  return this.children.filter(function(actor) {
-    return actor instanceof Krumelur;
-  });
+  return this.krumelurer;
 };
 
 Stage.prototype.clearKrumelurer = function() {
-  this.children = this.children.filter(function(actor) {
-    return !(actor instanceof Krumelur);
-  });
+  this.krumelurer = [];
 };

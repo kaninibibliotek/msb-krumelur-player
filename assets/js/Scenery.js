@@ -20,10 +20,6 @@ function Scenery(vertices, zIndex, color, name) {
 
 Scenery.prototype = Object.create(PIXI.Graphics.prototype);
 
-Scenery.prototype.update = function() {
-  return;
-};
-
 Scenery.prototype.setColor = function(color) {
   this.clear();
 

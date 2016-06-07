@@ -17,7 +17,7 @@ var loader = (function() {
   return {
     createEffect: function(imageUrl, callback) {
       loadImage(imageUrl, function(texture) {
-        callback(new Effect(texture, 1000));
+        callback(new Effect(texture, 95, 1000));
       });
     },
 
