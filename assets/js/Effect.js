@@ -27,7 +27,9 @@ Effect.prototype.update = function(frameDelta, masterSize) {
 
   this.frameIndex = (this.frameIndex + frameDelta) % this.urls.length;
 
-  this.texture = PIXI.loader.resources[this.urls[Math.floor(this.frameIndex)]].texture;
+  var url = this.urls[Math.floor(this.frameIndex)];
+
+  this.texture = PIXI.loader.resources[url].texture;
 
   this.scale.set(masterSize, masterSize);
 
