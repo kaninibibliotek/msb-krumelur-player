@@ -15,9 +15,16 @@ var loader = (function() {
   }
 
   return {
-    createEffect: function(imageUrl, callback) {
-      loadImage(imageUrl, function(texture) {
-        callback(new Effect(texture, 95, 1000));
+    // TODO get list of image urls from server
+    createEffect: function(imageUrls, callback) {
+      var urls = [];
+
+      for (var i = 0; i < 43; i++) {
+        urls.push('/krumelur/assets/images/rainbow/rainbow_test_anim__000' + (i < 10 ? '0' + i : i.toString()) + '.png');
+      }
+
+      PIXI.loader.add(urls).load(function(loader, resources) {
+        callback(new Effect(urls, 95, 1000));
       });
     },
 

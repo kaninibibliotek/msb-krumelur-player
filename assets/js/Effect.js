@@ -1,24 +1,7 @@
-function Effect(texture, trigger, zIndex) {
-  PIXI.Sprite.call(this, texture);
+function Effect(textureUrls, trigger, zIndex) {
+  this.urls = textureUrls;
 
-  this.baseWidth  = texture.width;
-  this.baseHeight = texture.height;
-
-  this.spriteWidth  = this.baseWidth / 5;
-  this.spriteHeight = this.baseHeight / 5;
-
-  // Build array of Rectangles for each frame
-  this.frames = [];
-
-  for (var row = 0; row < 5; row++) {
-    var y = row * this.spriteHeight;
-
-    for (var col = 0; col < 5; col++) {
-      var x = col * this.spriteWidth;
-
-      this.frames.push(new PIXI.Rectangle(x, y, this.spriteWidth, this.spriteHeight));
-    }
-  }
+  PIXI.Sprite.call(this, PIXI.loader.resources[this.urls[0]].texture);
 
   this.frameIndex = 0;
 
@@ -26,7 +9,7 @@ function Effect(texture, trigger, zIndex) {
 
   this.zIndex = zIndex;
 
-  this.position.set(0, 100);
+  this.position.set(0, 0);
 
   this.renderable = false;
 }
@@ -42,13 +25,13 @@ Effect.prototype.update = function(frameDelta, masterSize) {
     return;
   }
 
-  this.frameIndex = (this.frameIndex + frameDelta) % this.frames.length;
+  this.frameIndex = (this.frameIndex + frameDelta) % this.urls.length;
 
-  this.texture.frame = this.frames[Math.floor(this.frameIndex)];
+  this.texture = PIXI.loader.resources[this.urls[Math.floor(this.frameIndex)]].texture;
 
   this.scale.set(masterSize, masterSize);
 
-  if (this.frameIndex >= this.frames.length - 1) {
+  if (this.frameIndex >= this.urls.length - 1) {
     this.frameIndex = 0;
     this.renderable = false;
   }

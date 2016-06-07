@@ -24,7 +24,7 @@ var player = (function() {
     stage.addMask(new Scenery(mask.vertices, mask.z, color, mask.name));
   });
 
-  loader.createEffect('/krumelur/assets/images/explosion.png', function(effect) {
+  loader.createEffect('rainbow', function(effect) {
     stage.addEffect(effect);
   });
 
