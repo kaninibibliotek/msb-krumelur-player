@@ -2,6 +2,22 @@ import json
 import re
 import sys
 
+def processOpacityKeyframes(keyframes):
+    breakpoints = []
+
+    for index, keyframe in enumerate(keyframes):
+        if keyframe["opacity"] != 100:
+            breakpoints.append({
+                "index": index,
+                "frame": keyframe["frame"]
+            })
+
+    for bp in breakpoints:
+        keyframes.insert(bp["index"] + 1, {
+            "frame":   bp["frame"] + 1,
+            "opacity": 100
+        })
+
 def getKeyframes(inp, header, keys, default=0):
     match = re.search(header, inp)
 
@@ -75,6 +91,8 @@ def convert(inp, outp, targetFps):
             maxFrame = keyframes[-1]["frame"]
 
     jsonData["duration"] = maxFrame
+
+    processOpacityKeyframes(jsonData["opacities"])
 
     outfile = open(outp, "w")
     json.dump(jsonData, outfile, indent=2)
