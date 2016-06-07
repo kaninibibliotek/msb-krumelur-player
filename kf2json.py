@@ -2,11 +2,20 @@ import json
 import re
 import sys
 
-def getKeyframes(inp, header, keys):
+def getKeyframes(inp, header, keys, default=0):
     match = re.search(header, inp)
 
     if (match is None):
-        raise Exception("No match for %s" % (header))
+        print "No match for %s" % (header)
+        kf = {}
+
+        for key in keys:
+            if key == "frame":
+                kf[key] = 0
+            else:
+                kf[key] = default
+
+        return [kf]
 
     lines     = inp[match.start():].splitlines()[2:]
     keyframes = []
@@ -48,8 +57,9 @@ def convert(inp, outp, targetFps):
 
         jsonData = {
             "positions": getKeyframes(text, "Transform\s+Position", ["frame", "x", "y", "z"]),
-            "scales":    getKeyframes(text, "Transform\s+Scale", ["frame", "scale"]),
-            "rotations": getKeyframes(text, "Transform\s+Rotation", ["frame", "rotation"])
+            "scales":    getKeyframes(text, "Transform\s+Scale", ["frame", "scale"], 10),
+            "rotations": getKeyframes(text, "Transform\s+Rotation", ["frame", "rotation"]),
+            "opacities": getKeyframes(text, "Transform\s+Opacity", ["frame", "opacity"])
         }
     except Exception, e:
         print e
