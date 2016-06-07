@@ -45,12 +45,5 @@ var animationRotationAtFrame = function(animation, index, frame) {
 };
 
 var animationOpacityAtFrame = function(animation, index, frame) {
-  var current = animation.opacities[index];
-  var next    = animation.opacities[index + 1];
-
-  if (!next) {
-    return current.opacity;
-  }
-
-  return lerp(current.frame, current.opacity, next.frame, next.opacity, frame);
+  return animation.opacities[index].opacity;
 };
