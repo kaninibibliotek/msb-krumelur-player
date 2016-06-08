@@ -1,0 +1,9 @@
+{
+  "name": "Explosion",
+  "trigger": 94,
+  "z": 65,
+  "urls": [
+    "files/effekter/explosion/explosion1.png",
+    "files/effekter/explosion/explosion2.png"
+  ]
+}
