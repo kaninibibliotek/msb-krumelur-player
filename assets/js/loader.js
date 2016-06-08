@@ -1,7 +1,5 @@
 var loader = (function() {
 
-  var request = new XMLHttpRequest();
-
   function loadImage(path, onLoad) {
     var image = PIXI.loader.resources[path];
 
@@ -15,16 +13,9 @@ var loader = (function() {
   }
 
   return {
-    // TODO get list of image urls from server
-    createEffect: function(imageUrls, callback) {
-      var urls = [];
-
-      for (var i = 0; i < 43; i++) {
-        urls.push('/krumelur/assets/images/rainbow/rainbow_test_anim__000' + (i < 10 ? '0' + i : i.toString()) + '.png');
-      }
-
-      PIXI.loader.add(urls).load(function(loader, resources) {
-        callback(new Effect(urls, 95, 1000));
+    loadEffect: function(effect, callback) {
+      PIXI.loader.add(effect.urls).load(function(loader, resources) {
+        callback(new Effect(effect.urls, effect.trigger, effect.z));
       });
     },
 
@@ -35,6 +26,8 @@ var loader = (function() {
     },
 
     requestActors: function(amount, callback) {
+      var request = new XMLHttpRequest();
+
       if (amount === 0) {
         return;
       }

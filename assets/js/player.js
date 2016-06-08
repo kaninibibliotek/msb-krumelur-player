@@ -24,8 +24,10 @@ var player = (function() {
     stage.addMask(new Scenery(mask.vertices, mask.z, color, mask.name));
   });
 
-  loader.createEffect('rainbow', function(effect) {
-    stage.addEffect(effect);
+  effects.forEach(function(effectJson) {
+    loader.loadEffect(effectJson, function(effect) {
+      stage.addEffect(effect);
+    });
   });
 
   function draw() {
