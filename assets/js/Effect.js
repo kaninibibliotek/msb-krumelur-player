@@ -25,11 +25,11 @@ Effect.prototype.update = function(frameDelta) {
     return;
   }
 
-  this.frameIndex = this.frameIndex + frameDelta;
-
   var url = this.urls[Math.min(Math.floor(this.frameIndex), this.urls.length - 1)];
 
   this.texture = PIXI.loader.resources[url].texture;
+
+  this.frameIndex = this.frameIndex + frameDelta;
 
   if (this.frameIndex > this.urls.length - 1) {
     this.frameIndex = 0;
