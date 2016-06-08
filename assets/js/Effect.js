@@ -20,7 +20,7 @@ Effect.prototype.start = function() {
   this.renderable = true;
 };
 
-Effect.prototype.update = function(frameDelta, masterSize) {
+Effect.prototype.update = function(frameDelta) {
   if (!this.renderable) {
     return;
   }
@@ -30,8 +30,6 @@ Effect.prototype.update = function(frameDelta, masterSize) {
   var url = this.urls[Math.floor(this.frameIndex)];
 
   this.texture = PIXI.loader.resources[url].texture;
-
-  this.scale.set(masterSize, masterSize);
 
   if (this.frameIndex >= this.urls.length - 1) {
     this.frameIndex = 0;
