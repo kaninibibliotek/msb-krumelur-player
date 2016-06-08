@@ -31,7 +31,7 @@ Effect.prototype.update = function(frameDelta) {
 
   this.texture = PIXI.loader.resources[url].texture;
 
-  if (this.frameIndex >= this.urls.length - 1) {
+  if (this.frameIndex > this.urls.length - 1) {
     this.frameIndex = 0;
     this.renderable = false;
   }
