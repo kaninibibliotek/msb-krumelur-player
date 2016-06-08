@@ -25,9 +25,9 @@ Effect.prototype.update = function(frameDelta) {
     return;
   }
 
-  this.frameIndex = (this.frameIndex + frameDelta) % this.urls.length;
+  this.frameIndex = this.frameIndex + frameDelta;
 
-  var url = this.urls[Math.floor(this.frameIndex)];
+  var url = this.urls[Math.min(Math.floor(this.frameIndex), this.urls.length - 1)];
 
   this.texture = PIXI.loader.resources[url].texture;
 
