@@ -141,5 +141,11 @@
       "frame": 259.2,
       "scale": 14.011
     }
+  ],
+  "opacities": [
+    {
+      "opacity": 100.0,
+      "frame": 0
+    }
   ]
 }

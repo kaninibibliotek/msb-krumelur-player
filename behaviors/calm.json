@@ -71,5 +71,11 @@
       "frame": 120,
       "rotation": 180
     }
+  ],
+  "opacities": [
+    {
+      "opacity": 100.0,
+      "frame": 0
+    }
   ]
 }

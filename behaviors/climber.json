@@ -327,5 +327,11 @@
       "frame": 72.0,
       "scale": 8.0
     }
+  ],
+  "opacities": [
+    {
+      "opacity": 100.0,
+      "frame": 0
+    }
   ]
 }
