@@ -1,14 +1,14 @@
 # Krumelur Player
 
 ## Development
-Start msb-chamberlain server
+Start msb-chamberlain server, then:
 ```sh
-$ open http://localhost:3000/msb-krumelur-player
+$ open http://localhost:3000/krumelur/app
 ```
 
 ### Testing a krumelur motion path
 ```sh
-$ open http://localhost:3000/msb-krumelur-player/?dev&name=[desired krumelur file name]&behavior=[desired behavior]
+$ open http://localhost:3000/krumelur/app/?dev&name=[desired krumelur file name]&behavior=[desired behavior]
 ```
 The desired krumelur with the desired behavior will appear. Press <kbd>A</kbd> to add it again. Press <kbd>C</kbd> to remove all krumelurer.
 
@@ -19,6 +19,17 @@ $ python kf2json.py [input] [output] [framerate]
 Example:
 ```sh
 $ python kf2json.py motionpath.txt myanimation.json 60
+```
+
+### Converting JSON masks to SVG
+```sh
+$ python json2svg.py [inputdirectory] [outputdirectory]
+```
+Will make SVG versions of all JSON masks in `inputdirectory` and place them in `outputdirectory`.
+
+Example:
+```sh
+$ python json2svg.py masks/ svgs/
 ```
 
 ### I want one really big screen
