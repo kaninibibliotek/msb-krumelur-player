@@ -15,8 +15,8 @@ var loader = (function() {
   return {
     loadEffect: function(effect, callback) {
       PIXI.loader.add(effect.urls).load(function(loader, resources) {
-        effect.urls.forEach(function(textureUrl) {
-          renderer.textureManager.updateTexture(resources[textureUrl].texture)
+        effect.urls.forEach(function(url) {
+          renderer.textureManager.updateTexture(resources[url].texture)
         });
 
         callback(new Effect(effect.urls, effect.trigger, effect.z));
