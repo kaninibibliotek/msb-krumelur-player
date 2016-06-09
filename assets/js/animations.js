@@ -2,6 +2,12 @@ var lerp = function(x1, y1, x2, y2, t) {
   return ((y2 - y1) / (x2 - x1)) * (t - x1) + y1;
 };
 
+var getNextAnimationIndex = function(animation, prop, currentFrame, currentIndex) {
+  var next = Math.min(currentIndex + 1, animation[prop].length - 1);
+
+  return currentFrame >= animation[prop][next].frame ? next : currentIndex;
+};
+
 var animationPositionAtFrame = function(animation, index, frame) {
   var current = animation.positions[index];
   var next    = animation.positions[index + 1];

@@ -24,27 +24,6 @@ Krumelur.prototype = Object.create(PIXI.Sprite.prototype);
 Krumelur.prototype.update = function(frameDelta, size) {
   this.frame += frameDelta;
 
-  var nextPositionIdx = Math.min(this.positionIdx + 1, this.animation.positions.length - 1);
-  var nextScaleIdx    = Math.min(this.scaleIdx + 1, this.animation.scales.length - 1);
-  var nextRotationIdx = Math.min(this.rotationIdx + 1, this.animation.rotations.length - 1);
-  var nextOpacityIdx  = Math.min(this.opacityIdx + 1, this.animation.opacities.length - 1);
-
-  if (this.frame >= this.animation.positions[nextPositionIdx].frame) {
-    this.positionIdx = nextPositionIdx;
-  }
-
-  if (this.frame >= this.animation.scales[nextScaleIdx].frame) {
-    this.scaleIdx = nextScaleIdx;
-  }
-
-  if (this.frame >= this.animation.rotations[nextRotationIdx].frame) {
-    this.rotationIdx = nextRotationIdx;
-  }
-
-  if (this.frame >= this.animation.opacities[nextOpacityIdx].frame) {
-    this.opacityIdx = nextOpacityIdx;
-  }
-
   var position = animationPositionAtFrame(this.animation, this.positionIdx, this.frame);
   var scale    = size * animationScaleAtFrame(this.animation, this.scaleIdx, this.frame) / 100;
   var rotation = animationRotationAtFrame(this.animation, this.rotationIdx, this.frame);
@@ -61,4 +40,13 @@ Krumelur.prototype.update = function(frameDelta, size) {
   if (this.frame >= this.animation.duration) {
     this.done = true;
   }
+
+  this.updateAnimationIndices();
+};
+
+Krumelur.prototype.updateAnimationIndices = function() {
+  this.positionIdx = getNextAnimationIndex(this.animation, 'positions', this.frame, this.positionIdx);
+  this.scaleIdx    = getNextAnimationIndex(this.animation, 'scales', this.frame, this.scaleIdx);
+  this.rotationIdx = getNextAnimationIndex(this.animation, 'rotations', this.frame, this.rotationIdx);
+  this.opacityIdx  = getNextAnimationIndex(this.animation, 'opacities', this.frame, this.opacityIdx);
 };
