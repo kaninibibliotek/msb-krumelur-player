@@ -25,6 +25,9 @@ Effect.prototype.update = function(frameDelta) {
     return;
   }
 
+  // Play at 25 fps
+  frameDelta *= 25/60;
+
   var url = this.urls[Math.min(Math.floor(this.frameIndex), this.urls.length - 1)];
 
   this.texture = PIXI.loader.resources[url].texture;
