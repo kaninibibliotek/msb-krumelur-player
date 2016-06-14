@@ -72,8 +72,6 @@ var player = (function() {
 
   requestAnimationFrame(draw);
 
-  stage.showScenery();
-
   return {
     setSpeed: function(newSpeed) {
       masterSpeed = Math.max(0.1, Math.min(newSpeed, 2));
