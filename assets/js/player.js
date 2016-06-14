@@ -60,7 +60,7 @@ var player = (function() {
   }
 
   function addTestKrumelur() {
-    var imageUrl = 'files/' + locationUtils.getQueryValue('name');
+    var imageUrl = '/krumelur/files/' + locationUtils.getQueryValue('name');
     var behavior = window.behaviors[locationUtils.getQueryValue('behavior')];
 
     if (imageUrl && behavior) {
