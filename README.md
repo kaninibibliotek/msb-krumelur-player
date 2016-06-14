@@ -32,5 +32,24 @@ Example:
 $ python json2svg.py masks/ svgs/
 ```
 
+### Creating an effects JSON
+```sh
+$ python effect2json.py [inputdirectory] [outfile] [name] [trigger] [z]
+```
+Will create a JSON file with the format:
+```
+{
+    "name": [name],
+    "trigger": [trigger],
+    "z": [z],
+    "urls" [
+        "/krumelur/effects/[name]/file0.png",
+        "/krumelur/effects/[name]/file1.png",
+        ...
+    ]
+}
+```
+where the urls are created from the contents of [inputdirectory].
+
 ### I want one really big screen
 System Preferences -> Mission Control -> Uncheck "Displays have separate Spaces"
