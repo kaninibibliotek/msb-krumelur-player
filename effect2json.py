@@ -2,7 +2,7 @@ import json
 import os
 import sys
 
-PREFIX = "/krumelur/effects/"
+PREFIX = "effects/"
 
 def convert(inp, outp, name, trigger, z):
     files = os.listdir(inp)

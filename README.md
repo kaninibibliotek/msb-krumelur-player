@@ -43,8 +43,8 @@ Will create a JSON file with the format:
     "trigger": [trigger],
     "z": [z],
     "urls" [
-        "/krumelur/effects/[name]/file0.png",
-        "/krumelur/effects/[name]/file1.png",
+        "effects/[name]/file0.png",
+        "effects/[name]/file1.png",
         ...
     ]
 }
