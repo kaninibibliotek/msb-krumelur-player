@@ -20,11 +20,14 @@ document.addEventListener('keydown', function(ev) {
 var canvas = document.getElementsByTagName('canvas')[0];
 
 canvas.addEventListener('mousedown', function(ev) {
-  if (ev.shiftKey) {
-    player.removeTestMask();
-  } else if (ev.altKey) {
-    player.undoTestMaskPoint();
-  } else {
-    player.addTestMaskPoint(ev.offsetX, ev.offsetY);
+  // Only draw masks in dev mode
+  if (locationUtils.isDev()) {
+    if (ev.shiftKey) {
+      player.removeTestMask();
+    } else if (ev.altKey) {
+      player.undoTestMaskPoint();
+    } else {
+      player.addTestMaskPoint(ev.offsetX, ev.offsetY);
+    }
   }
 });

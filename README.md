@@ -6,6 +6,18 @@ Start msb-chamberlain server, then:
 $ open http://localhost:3000/krumelur/app
 ```
 
+### Hiding, showing and drawing masks
+
+<kbd>D</kbd> toggles settings box where you can show hide masks per layer or name
+
+Draw masks like this:
+
+- Add `?dev` to url
+- Click to start drawing mask
+- <kbd>ALT</kbd>+click to undo latest mask point
+- <kbd>SHIFT</kbd>+click to remove all mask points
+
+
 ### Testing a krumelur motion path
 ```sh
 $ open http://localhost:3000/krumelur/app/?dev&name=[desired krumelur file name]&behavior=[desired behavior]
