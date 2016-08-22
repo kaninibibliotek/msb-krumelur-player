@@ -93,6 +93,18 @@ var settings = (function() {
     player.disableSceneryLayer(parseInt(selectLayer.selectedOptions[0].text));
   });
 
+  // Trigger selected effect
+  var effectSelect = settingsElem.getElementsByClassName('effect-select')[0];
+  var effectTrigger = settingsElem.getElementsByClassName('effect-trigger')[0];
+
+  effects.forEach(function(effect) {
+    effectSelect.add(new Option(effect.name, effect.trigger));
+  });
+
+  effectTrigger.addEventListener('click', function(ev) {
+    player.triggerEffectOnce(parseInt(effectSelect.selectedOptions[0].value));
+  });
+
   // Mask JSON data
   var maskJsonElem     = settingsElem.getElementsByClassName('mask-json')[0];
   var selectButtonElem = settingsElem.getElementsByClassName('button-select')[0];

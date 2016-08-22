@@ -15,9 +15,10 @@ var player = (function() {
     stage.addMask(new Scenery(mask.vertices, mask.z, color, mask.name));
   });
 
-  effects.forEach(function(effectJson) {
+  effects.forEach(function(effectJson, i) {
     loader.loadEffect(effectJson, function(effect) {
       stage.addEffect(effect);
+      console.log('Loaded effect:', effectJson.name, i+1, 'of', effects.length);
     });
   });
 
@@ -119,6 +120,10 @@ var player = (function() {
 
     disableSceneryWithName: function(name) {
       stage.disableSceneryWithName(name);
+    },
+
+    triggerEffectOnce: function(trigger) {
+      stage.triggerEffectOnce(trigger); 
     },
 
     addTestMaskPoint: function(x, y) {

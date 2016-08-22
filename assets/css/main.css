@@ -1,29 +1,35 @@
 body {
-    background: black;
-    overflow: hidden;
+  background: black;
+  overflow: hidden;
 }
 
 canvas {
-    position: absolute;
-    top: 0;
-    left: 70px;
+  position: absolute;
+  top: 0;
+  left: 70px;
 }
 
 div.settings {
-    position: fixed;
-    top: 200px;
-    left: 80px;
-    width: 400px;
-    height: 600px;
-    background: rgba(180, 100, 150, 0.8);
-    display: none;
+  position: fixed;
+  padding: 10px;
+  top: 160px;
+  left: 80px;
+  width: 400px;
+  height: 400px;
+  background: rgba(180, 100, 150, 0.7);
+  display: none;
+  font-family: 'Helvetica';
+  font-size: small;
+  font-weight: 600;
+  
 }
 
 textarea.mask-json {
-    position: absolute;
-    top: 120px;
-    height: 500px;
-    width: 100%;
-    overflow: auto;
-    background: rgba(230, 230, 230, 0.9);
+  position: relative;
+  top: 10px;
+  height: 200px;
+  width: 390px;
+  overflow: auto;
+  background: rgba(230, 230, 230, 0.8);
+  margin-bottom: 10px;
 }

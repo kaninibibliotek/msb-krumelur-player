@@ -4,15 +4,12 @@ document.addEventListener('keydown', function(ev) {
       if (locationUtils.isDev()) {
         player.addTestKrumelur();
       }
-
       break;
-    case 67: // c
+    case 67: // c 
       player.clearKrumelurer();
-
       break;
-    case 68: // d
+    case 68: // d --> open dev box
       settings.toggle();
-
       break;
   }
 });

@@ -5,6 +5,10 @@ function Stage() {
   this.krumelurer = [];
   this.masks = [];
   this.effects = [];
+
+  this.dev = {
+    effectTrigger: 100    // 100 = no effect, <100 = effect  
+  };
 }
 
 Stage.prototype = Object.create(PIXI.Container.prototype);
@@ -48,6 +52,7 @@ Stage.prototype.removeEffect = function(effect) {
 Stage.prototype.update = function(frameDelta, masterSize) {
   var triggers = [];
 
+  // Effects are triggered by a Krumelur opacity value < 100
   this.krumelurer.forEach(function(krumelur) {
     krumelur.update(frameDelta, masterSize);
 
@@ -63,6 +68,19 @@ Stage.prototype.update = function(frameDelta, masterSize) {
 
     effect.update(frameDelta, masterSize);
   });
+
+  // Dev stuff
+  if (locationUtils.isDev()) {
+    if (this.dev.effectTrigger < 100) {
+      var effectToTrigger = this.effects.find(function(effect) {
+        return effect.trigger === this.dev.effectTrigger; 
+      }, this)  
+      if (effectToTrigger) {
+        effectToTrigger.start(); 
+        this.dev.effectTrigger = 100; // Only trigger once
+      }
+    } 
+  }
 
   this.children = mergeSortBy(this.children, 'zIndex');
 };
@@ -147,6 +165,10 @@ Stage.prototype.disableSceneryWithName = function(name) {
       mask.disable();
     }
   });
+};
+
+Stage.prototype.triggerEffectOnce = function(trigger) {
+  this.dev.effectTrigger = trigger;
 };
 
 Stage.prototype.getKrumelurer = function() {
