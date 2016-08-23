@@ -1,4 +1,10 @@
 var settings = (function() {
+
+  // Returns a random integer between min (included) and max (excluded)
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
   var settingsElem = document.getElementsByClassName('settings')[0];
 
   // Sliders
@@ -121,7 +127,14 @@ var settings = (function() {
   });
 
   krumelurAdd.addEventListener('click', function(ev) {
-    player.addKrumelur(krumelurSelect.selectedOptions[0].text, behaviorSelect.selectedOptions[0].text);
+    var selectedUrl = krumelurSelect.selectedOptions[0].text;
+    var imageUrl = (selectedUrl === '_random_') ? krumelurs[getRandomInt(0, krumelurs.length)].url : selectedUrl; 
+
+    var selectedBehavior = behaviorSelect.selectedOptions[0].text;
+    var behaviorKeys = Object.keys(window.behaviors);
+    var behavior = (selectedBehavior === '_random_') ? behaviorKeys[getRandomInt(0, behaviorKeys.length)] : selectedBehavior;
+
+    player.addKrumelur(imageUrl, behavior);
   });
 
   // Mask JSON data

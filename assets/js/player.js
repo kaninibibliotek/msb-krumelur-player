@@ -161,8 +161,16 @@ var player = (function() {
       testMaskVertices = [];
     },
 
-    addKrumelur: function(krumelur, behavior) {
-      console.log('addKrumelur', krumelur, behavior); 
+    addKrumelur: function(imageUrl, behavior) {
+      console.log('addKrumelur', imageUrl, behavior); 
+      var imageUrl = 'files/' + locationUtils.getQueryValue('name');
+      var behavior = window.behaviors[locationUtils.getQueryValue('behavior')];
+
+      if (imageUrl && behavior) {
+        loader.createKrumelur(imageUrl, behavior, function(krumelur) {
+          stage.addKrumelur(krumelur);
+        });
+      }
     },
 
     addTestKrumelur: function() {
