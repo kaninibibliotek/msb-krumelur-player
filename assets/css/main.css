@@ -14,22 +14,25 @@ div.settings {
   padding: 10px;
   top: 160px;
   left: 80px;
-  width: 400px;
-  height: 400px;
-  background: rgba(180, 100, 150, 0.7);
+  width: 500px;
+  height: 360;
+  background: rgba(180, 100, 150, 0.5);
   display: none;
   font-family: 'Helvetica';
   font-size: small;
-  font-weight: 600;
-  
+  font-weight: 400;
+}
+
+div.settings span {
+  color: white;
 }
 
 textarea.mask-json {
   position: relative;
   top: 10px;
-  height: 200px;
-  width: 390px;
+  height: 160px;
+  width: 490px;
   overflow: auto;
-  background: rgba(230, 230, 230, 0.8);
+  background: rgba(230, 230, 230, 0.4);
   margin-bottom: 10px;
 }

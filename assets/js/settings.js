@@ -111,9 +111,9 @@ var settings = (function() {
   var krumelurAdd = document.getElementById('krumelur-add');
 
   krumelurSelect.add(new Option('_random_', null, true, true));
-  //Object.keys(behaviors).forEach(function(behaviorKey) {
-    //behaviorSelect.add(new Option(behaviorKey));
-  //});
+  krumelurs.forEach(function(krumelur) {
+    krumelurSelect.add(new Option(krumelur.url.match(/[^/]+$/), krumelur.url));
+  });
 
   behaviorSelect.add(new Option('_random_', null, true, true));
   Object.keys(behaviors).forEach(function(behaviorKey) {
