@@ -15,14 +15,12 @@ var player = (function() {
     stage.addMask(new Scenery(mask.vertices, mask.z, color, mask.name));
   });
 
-  /*
   effects.forEach(function(effectJson, i) {
     loader.loadEffect(effectJson, function(effect) {
       stage.addEffect(effect);
       console.log('Loaded effect:', effectJson.name, i+1, 'of', effects.length);
     });
   });
-  */
 
   function draw() {
     requestAnimationFrame(draw);
