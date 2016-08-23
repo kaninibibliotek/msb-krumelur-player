@@ -116,18 +116,18 @@ var settings = (function() {
   var behaviorSelect = document.getElementById('behavior-select');
   var krumelurAdd = document.getElementById('krumelur-add');
 
-  krumelurSelect.add(new Option('_random_', null, true, true));
+  krumelurSelect.add(new Option('_random_', '_random_', true, true));
   krumelurs.forEach(function(krumelur) {
     krumelurSelect.add(new Option(krumelur.url.match(/[^/]+$/), krumelur.url));
   });
 
-  behaviorSelect.add(new Option('_random_', null, true, true));
+  behaviorSelect.add(new Option('_random_', '_random_', true, true));
   Object.keys(behaviors).forEach(function(behaviorKey) {
     behaviorSelect.add(new Option(behaviorKey));
   });
 
   krumelurAdd.addEventListener('click', function(ev) {
-    var selectedUrl = krumelurSelect.selectedOptions[0].text;
+    var selectedUrl = krumelurSelect.selectedOptions[0].value;
     var imageUrl = (selectedUrl === '_random_') ? krumelurs[getRandomInt(0, krumelurs.length)].url : selectedUrl; 
 
     var selectedBehavior = behaviorSelect.selectedOptions[0].text;

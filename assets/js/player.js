@@ -15,12 +15,14 @@ var player = (function() {
     stage.addMask(new Scenery(mask.vertices, mask.z, color, mask.name));
   });
 
+  /*
   effects.forEach(function(effectJson, i) {
     loader.loadEffect(effectJson, function(effect) {
       stage.addEffect(effect);
       console.log('Loaded effect:', effectJson.name, i+1, 'of', effects.length);
     });
   });
+  */
 
   function draw() {
     requestAnimationFrame(draw);
@@ -36,8 +38,9 @@ var player = (function() {
     renderer.render(stage);
   }
 
+  // TODO: Move to main() function 
   if (locationUtils.isDev()) {
-    // addTestKrumelur();
+    //addTestKrumelur();
   } else {
     // Request new krumelurs at regular intervals
     setInterval(function() {
@@ -60,14 +63,26 @@ var player = (function() {
     queue.push(actor);
   }
 
+  // Load from querystring ?dev&name=krumelur.png&behavior=crazy
   function addTestKrumelur() {
     var imageUrl = 'files/' + locationUtils.getQueryValue('name');
-    var behavior = window.behaviors[locationUtils.getQueryValue('behavior')];
+    var behaviorKey = locationUtils.getQueryValue('behavior');
+    addKrumelur(imageUrl, behaviorKey);
+  }
 
+  function addKrumelur(imageUrl, behaviorKey) {
+    console.log('addKrumelur', imageUrl, behaviorKey); 
+    var behavior = window.behaviors[behaviorKey];
+    loadKrumelur(imageUrl, behavior);
+  }
+
+  function loadKrumelur(imageUrl, behavior) {
     if (imageUrl && behavior) {
       loader.createKrumelur(imageUrl, behavior, function(krumelur) {
         stage.addKrumelur(krumelur);
       });
+    } else {
+      console.warn('loadKrumelur(): error loading krumelur', imageUrl, ' with behavior', behavior);
     }
   }
 
@@ -160,15 +175,7 @@ var player = (function() {
     },
 
     addKrumelur: function(imageUrl, behavior) {
-      console.log('addKrumelur', imageUrl, behavior); 
-      var imageUrl = 'files/' + locationUtils.getQueryValue('name');
-      var behavior = window.behaviors[locationUtils.getQueryValue('behavior')];
-
-      if (imageUrl && behavior) {
-        loader.createKrumelur(imageUrl, behavior, function(krumelur) {
-          stage.addKrumelur(krumelur);
-        });
-      }
+      addKrumelur(imageUrl, behavior);
     },
 
     addTestKrumelur: function() {
