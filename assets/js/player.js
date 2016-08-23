@@ -15,12 +15,14 @@ var player = (function() {
     stage.addMask(new Scenery(mask.vertices, mask.z, color, mask.name));
   });
 
+  /*
   effects.forEach(function(effectJson, i) {
     loader.loadEffect(effectJson, function(effect) {
       stage.addEffect(effect);
       console.log('Loaded effect:', effectJson.name, i+1, 'of', effects.length);
     });
   });
+  */
 
   function draw() {
     requestAnimationFrame(draw);
@@ -157,6 +159,10 @@ var player = (function() {
       stage.removeMask(testMask);
 
       testMaskVertices = [];
+    },
+
+    addKrumelur: function(krumelur, behavior) {
+      console.log('addKrumelur', krumelur, behavior); 
     },
 
     addTestKrumelur: function() {

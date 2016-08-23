@@ -42,15 +42,22 @@
         <select class="effect-select"></select>
         <button class="effect-trigger">Trigger</button>
       </div>
+      <div>
+        <span>Krumelur:</span>
+        <select id="krumelur-select"></select>
+        <select id="behavior-select"></select>
+        <button id="krumelur-add">Trigger</button>
+      </div>
       <textarea class="mask-json"></textarea>
       <button class="button-select">Select all json</button>
     </div>
   </body>
   <script>
-    // Behavior, mask and effects data added by server
+    // Behavior, mask, effects and 100 latest krumelurs are added by server
     window.behaviors = <%= behaviors %>;
     window.masks = <%= masks %>;
     window.effects = <%= effects %>;
+    window.krumelurs = <%= krumelurs %>;
   </script>
 
   <!-- OTHER SCRIPTS -->

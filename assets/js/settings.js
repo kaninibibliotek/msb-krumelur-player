@@ -97,12 +97,31 @@ var settings = (function() {
   var effectSelect = settingsElem.getElementsByClassName('effect-select')[0];
   var effectTrigger = settingsElem.getElementsByClassName('effect-trigger')[0];
 
-  effects.forEach(function(effect) {
+  window.effects.forEach(function(effect) {
     effectSelect.add(new Option(effect.name, effect.trigger));
   });
 
   effectTrigger.addEventListener('click', function(ev) {
     player.triggerEffectOnce(parseInt(effectSelect.selectedOptions[0].value));
+  });
+
+  // Trigger selected krumelur
+  var krumelurSelect = document.getElementById('krumelur-select');
+  var behaviorSelect = document.getElementById('behavior-select');
+  var krumelurAdd = document.getElementById('krumelur-add');
+
+  krumelurSelect.add(new Option('_random_', null, true, true));
+  //Object.keys(behaviors).forEach(function(behaviorKey) {
+    //behaviorSelect.add(new Option(behaviorKey));
+  //});
+
+  behaviorSelect.add(new Option('_random_', null, true, true));
+  Object.keys(behaviors).forEach(function(behaviorKey) {
+    behaviorSelect.add(new Option(behaviorKey));
+  });
+
+  krumelurAdd.addEventListener('click', function(ev) {
+    player.addKrumelur(krumelurSelect.selectedOptions[0].text, behaviorSelect.selectedOptions[0].text);
   });
 
   // Mask JSON data
