@@ -19,13 +19,19 @@ function Krumelur(texture, animation) {
   this.done = false;
 }
 
+var  test = {x: 1, y: 2} ;
+var {x} = test;
+console.log('testo', x)
+
 Krumelur.prototype = Object.create(PIXI.Sprite.prototype);
 
 Krumelur.prototype.update = function(frameDelta, size) {
   this.frame += frameDelta;
 
   var position = animationPositionAtFrame(this.animation, this.positionIdx, this.frame);
-  var scale    = size * animationScaleAtFrame(this.animation, this.scaleIdx, this.frame) / 100;
+  var scales = animationScaleAtFrame(this.animation, this.scaleIdx, this.frame);
+  var scaleX = size * scales.x / 100;
+  var scaleY = size * scales.y / 100;
   var rotation = animationRotationAtFrame(this.animation, this.rotationIdx, this.frame);
 
   this.opacity = animationOpacityAtFrame(this.animation, this.opacityIdx, this.frame);
@@ -33,7 +39,8 @@ Krumelur.prototype.update = function(frameDelta, size) {
   this.position.set(position.x, position.y);
   this.zIndex = position.z;
 
-  this.scale.set(scale, scale);
+  console.log('scaleX', scaleX, 'scaleY', scaleY);
+  this.scale.set(scaleX, scaleY);
 
   this.rotation = rotation / 180 * Math.PI;
 

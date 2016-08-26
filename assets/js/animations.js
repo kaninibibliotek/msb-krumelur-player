@@ -32,11 +32,16 @@ var animationScaleAtFrame = function(animation, index, frame) {
   var current = animation.scales[index];
   var next    = animation.scales[index + 1];
 
+  console.log('frame', frame, 'current', current);
+
   if (!next) {
-    return current.scale;
+    return {x: current.x, y: current.y};
   }
 
-  return lerp(current.frame, current.scale, next.frame, next.scale, frame);
+  return {
+    x: lerp(current.frame, current.x, next.frame, next.x, frame),
+    y: lerp(current.frame, current.y, next.frame, next.y, frame),
+  };
 };
 
 var animationRotationAtFrame = function(animation, index, frame) {

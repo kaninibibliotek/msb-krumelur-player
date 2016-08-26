@@ -73,7 +73,7 @@ def convert(inp, outp, targetFps):
 
         jsonData = {
             "positions": getKeyframes(text, "Transform\s+Position", ["frame", "x", "y", "z"]),
-            "scales":    getKeyframes(text, "Transform\s+Scale", ["frame", "scale"], 10),
+            "scales":    getKeyframes(text, "Transform\s+Scale", ["frame", "x", "y"], 10),
             "rotations": getKeyframes(text, "Transform\s+Rotation", ["frame", "rotation"]),
             "opacities": getKeyframes(text, "Transform\s+Opacity", ["frame", "opacity"])
         }
