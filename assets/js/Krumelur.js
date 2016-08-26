@@ -33,7 +33,7 @@ Krumelur.prototype.update = function(frameDelta, size) {
   this.position.set(position.x, position.y);
   this.zIndex = position.z;
 
-  this.scale.set(scale, scale);
+  this.scale.set(19, scale);
 
   this.rotation = rotation / 180 * Math.PI;
 
