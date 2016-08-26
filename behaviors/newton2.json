@@ -1,5 +1,5 @@
 {
-  "duration": 1684.8, 
+  "duration": 1608.0, 
   "positions": [
     {
       "y": -25.4078, 
@@ -2016,102 +2016,6 @@
       "x": 3969.24, 
       "frame": 1608.0, 
       "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1612.8, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1617.6, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1622.3999999999999, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1627.2, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1632.0, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1636.8, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1641.6, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1646.3999999999999, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1651.2, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1656.0, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1660.8, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1665.6, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1670.3999999999999, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1675.2, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1680.0, 
-      "z": 0.0
-    }, 
-    {
-      "y": 640.654, 
-      "x": 3969.24, 
-      "frame": 1684.8, 
-      "z": 0.0
     }
   ], 
   "opacities": [
@@ -2471,55 +2375,55 @@
     }, 
     {
       "frame": 412.8, 
-      "rotation": -410.032
+      "rotation": -943.157
     }, 
     {
       "frame": 417.59999999999997, 
-      "rotation": 123.092
+      "rotation": -943.157
     }, 
     {
       "frame": 422.4, 
-      "rotation": 123.092
+      "rotation": -940.611
     }, 
     {
       "frame": 427.2, 
-      "rotation": 123.092
+      "rotation": -938.066
     }, 
     {
       "frame": 432.0, 
-      "rotation": 123.092
+      "rotation": -935.52
     }, 
     {
       "frame": 436.8, 
-      "rotation": 123.092
+      "rotation": -932.975
     }, 
     {
       "frame": 441.59999999999997, 
-      "rotation": 123.092
+      "rotation": -930.429
     }, 
     {
       "frame": 446.4, 
-      "rotation": 123.092
+      "rotation": -927.884
     }, 
     {
       "frame": 451.2, 
-      "rotation": 123.092
+      "rotation": -925.338
     }, 
     {
       "frame": 456.0, 
-      "rotation": 123.092
+      "rotation": -922.793
     }, 
     {
       "frame": 460.79999999999995, 
-      "rotation": 123.092
+      "rotation": -920.247
     }, 
     {
       "frame": 465.59999999999997, 
-      "rotation": 123.092
+      "rotation": -917.702
     }, 
     {
       "frame": 470.4, 
-      "rotation": 123.092
+      "rotation": -915.157
     }, 
     {
       "frame": 475.2, 
@@ -2819,55 +2723,55 @@
     }, 
     {
       "frame": 830.4, 
-      "rotation": 123.092
+      "rotation": -1016.19
     }, 
     {
       "frame": 835.1999999999999, 
-      "rotation": 123.092
+      "rotation": -1003.94
     }, 
     {
       "frame": 840.0, 
-      "rotation": 123.092
+      "rotation": -991.694
     }, 
     {
       "frame": 844.8, 
-      "rotation": 123.092
+      "rotation": -979.444
     }, 
     {
       "frame": 849.6, 
-      "rotation": 123.092
+      "rotation": -967.194
     }, 
     {
       "frame": 854.4, 
-      "rotation": 123.092
+      "rotation": -954.944
     }, 
     {
       "frame": 859.1999999999999, 
-      "rotation": 123.092
+      "rotation": -942.694
     }, 
     {
       "frame": 864.0, 
-      "rotation": 123.092
+      "rotation": -930.444
     }, 
     {
       "frame": 868.8, 
-      "rotation": 123.092
+      "rotation": -918.194
     }, 
     {
       "frame": 873.6, 
-      "rotation": 123.092
+      "rotation": -905.944
     }, 
     {
       "frame": 878.4, 
-      "rotation": 123.092
+      "rotation": -893.694
     }, 
     {
       "frame": 883.1999999999999, 
-      "rotation": 123.092
+      "rotation": -881.444
     }, 
     {
       "frame": 888.0, 
-      "rotation": 123.092
+      "rotation": -869.194
     }, 
     {
       "frame": 892.8, 
@@ -3283,255 +3187,191 @@
     }, 
     {
       "frame": 1387.2, 
-      "rotation": 1128.92
+      "rotation": 1176.82
     }, 
     {
       "frame": 1392.0, 
-      "rotation": 1081.02
+      "rotation": 1176.82
     }, 
     {
       "frame": 1396.8, 
-      "rotation": 1033.13
+      "rotation": 1176.82
     }, 
     {
       "frame": 1401.6, 
-      "rotation": 985.231
+      "rotation": 1181.38
     }, 
     {
       "frame": 1406.3999999999999, 
-      "rotation": 937.334
+      "rotation": 1193.77
     }, 
     {
       "frame": 1411.2, 
-      "rotation": 889.438
+      "rotation": 1212.03
     }, 
     {
       "frame": 1416.0, 
-      "rotation": 841.541
+      "rotation": 1234.19
     }, 
     {
       "frame": 1420.8, 
-      "rotation": 793.644
+      "rotation": 1258.32
     }, 
     {
       "frame": 1425.6, 
-      "rotation": 745.748
+      "rotation": 1282.44
     }, 
     {
       "frame": 1430.3999999999999, 
-      "rotation": 697.851
+      "rotation": 1304.61
     }, 
     {
       "frame": 1435.2, 
-      "rotation": 649.955
+      "rotation": 1322.87
     }, 
     {
       "frame": 1440.0, 
-      "rotation": 602.058
+      "rotation": 1335.25
     }, 
     {
       "frame": 1444.8, 
-      "rotation": 554.161
+      "rotation": 1339.82
     }, 
     {
       "frame": 1449.6, 
-      "rotation": 506.265
+      "rotation": 1345.15
     }, 
     {
       "frame": 1454.3999999999999, 
-      "rotation": 458.368
+      "rotation": 1350.48
     }, 
     {
       "frame": 1459.2, 
-      "rotation": 410.472
+      "rotation": 1355.82
     }, 
     {
       "frame": 1464.0, 
-      "rotation": 362.575
+      "rotation": 1361.15
     }, 
     {
       "frame": 1468.8, 
-      "rotation": 314.678
+      "rotation": 1366.48
     }, 
     {
       "frame": 1473.6, 
-      "rotation": 266.782
+      "rotation": 1371.82
     }, 
     {
       "frame": 1478.3999999999999, 
-      "rotation": 218.885
+      "rotation": 1377.15
     }, 
     {
       "frame": 1483.2, 
-      "rotation": 170.989
+      "rotation": 1382.48
     }, 
     {
       "frame": 1488.0, 
-      "rotation": 123.092
+      "rotation": 1387.82
     }, 
     {
       "frame": 1492.8, 
-      "rotation": 123.092
+      "rotation": 1373.61
     }, 
     {
       "frame": 1497.6, 
-      "rotation": 123.092
+      "rotation": 1359.4
     }, 
     {
       "frame": 1502.3999999999999, 
-      "rotation": 123.092
+      "rotation": 1345.19
     }, 
     {
       "frame": 1507.2, 
-      "rotation": 123.092
+      "rotation": 1330.98
     }, 
     {
       "frame": 1512.0, 
-      "rotation": 123.092
+      "rotation": 1316.77
     }, 
     {
       "frame": 1516.8, 
-      "rotation": 123.092
+      "rotation": 1302.56
     }, 
     {
       "frame": 1521.6, 
-      "rotation": 123.092
+      "rotation": 1288.35
     }, 
     {
       "frame": 1526.3999999999999, 
-      "rotation": 123.092
+      "rotation": 1274.14
     }, 
     {
       "frame": 1531.2, 
-      "rotation": 123.092
+      "rotation": 1259.93
     }, 
     {
       "frame": 1536.0, 
-      "rotation": 123.092
+      "rotation": 1245.72
     }, 
     {
       "frame": 1540.8, 
-      "rotation": 123.092
+      "rotation": 1231.51
     }, 
     {
       "frame": 1545.6, 
-      "rotation": 123.092
+      "rotation": 1217.3
     }, 
     {
       "frame": 1550.3999999999999, 
-      "rotation": 123.092
+      "rotation": 1203.09
     }, 
     {
       "frame": 1555.2, 
-      "rotation": 145.022
+      "rotation": 1225.02
     }, 
     {
       "frame": 1560.0, 
-      "rotation": 178.185
+      "rotation": 1258.18
     }, 
     {
       "frame": 1564.8, 
-      "rotation": 211.347
+      "rotation": 1291.35
     }, 
     {
       "frame": 1569.6, 
-      "rotation": 244.51
+      "rotation": 1324.51
     }, 
     {
       "frame": 1574.3999999999999, 
-      "rotation": 277.672
+      "rotation": 1357.67
     }, 
     {
       "frame": 1579.2, 
-      "rotation": 310.835
+      "rotation": 1390.83
     }, 
     {
       "frame": 1584.0, 
-      "rotation": 343.997
+      "rotation": 1424.0
     }, 
     {
       "frame": 1588.8, 
-      "rotation": 377.16
+      "rotation": 1457.16
     }, 
     {
       "frame": 1593.6, 
-      "rotation": 410.322
+      "rotation": 1490.32
     }, 
     {
       "frame": 1598.3999999999999, 
-      "rotation": 443.485
+      "rotation": 1523.48
     }, 
     {
       "frame": 1603.2, 
-      "rotation": 476.647
+      "rotation": 1556.65
     }, 
     {
       "frame": 1608.0, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1612.8, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1617.6, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1622.3999999999999, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1627.2, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1632.0, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1636.8, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1641.6, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1646.3999999999999, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1651.2, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1656.0, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1660.8, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1665.6, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1670.3999999999999, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1675.2, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1680.0, 
-      "rotation": 509.81
-    }, 
-    {
-      "frame": 1684.8, 
-      "rotation": 509.81
+      "rotation": 1589.81
     }
   ], 
   "scales": [
