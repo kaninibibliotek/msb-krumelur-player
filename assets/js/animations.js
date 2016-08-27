@@ -32,7 +32,7 @@ var animationScaleAtFrame = function(animation, index, frame) {
   var current = animation.scales[index];
   var next    = animation.scales[index + 1];
 
-  console.log('frame', frame, 'current', current);
+  //console.log('frame', frame, 'current', current);
 
   if (!next) {
     return {x: current.x, y: current.y};
