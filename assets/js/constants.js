@@ -13,8 +13,12 @@ var constants = {
 
   DEFAULT_BEHAVIOR: 'newton2',
 
+  // Ms after which a newly posted krumelur will appear
+  // Gives the kids some time to run from machine to wall
+  NEW_KRUMELUR_DELAY: 5 * 1000, 
+
   // Maxmium ms after which a random krumelur will appear
-  RANDOM_KRUMELUR_DELAY_MAX: 60 * 1000, 
+  RANDOM_KRUMELUR_DELAY_MAX: 5 * 60 * 1000, 
 
   MASK_COLORS: {
     '100': 0xffffff,

@@ -35,8 +35,16 @@ var player = (function() {
     });
 
     socket.on('newKrumelur', function(krumelur) {
-      console.log('New krumelur:', krumelur); 
-      addKrumelur(krumelur.url, utils.behaviorKeyToName(krumelur.behavior));
+      console.log('New krumelur:', krumelur.url); 
+
+      const delay = utils.getQueryValue('newKrumelurDelay') || constants.NEW_KRUMELUR_DELAY;
+
+      setTimeout(
+        addKrumelur,
+        delay,
+        krumelur.url,
+        utils.behaviorKeyToName(krumelur.behavior)
+      );
     });
 
     socket.on('disconnect', function(){
@@ -53,7 +61,6 @@ var player = (function() {
       delay,
       () => {
         const maxDelay = utils.getQueryValue('randomKrumelurDelayMax') || constants.RANDOM_KRUMELUR_DELAY_MAX; 
-        console.log('randomKrumelurDelayMax', maxDelay);
         const delay = utils.getRandomInt(0, maxDelay);
         delayedAddKrumelur(delay);
       }
