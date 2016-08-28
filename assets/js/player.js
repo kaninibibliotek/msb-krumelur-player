@@ -52,7 +52,9 @@ var player = (function() {
       addRandomKrumelur, 
       delay,
       () => {
-        const delay = utils.getRandomInt(0, constants.RANDOM_KRUMELUR_DELAY_MAX);
+        const maxDelay = utils.getQueryValue('randomKrumelurDelayMax') || constants.RANDOM_KRUMELUR_DELAY_MAX; 
+        console.log('randomKrumelurDelayMax', maxDelay);
+        const delay = utils.getRandomInt(0, maxDelay);
         delayedAddKrumelur(delay);
       }
     ) 

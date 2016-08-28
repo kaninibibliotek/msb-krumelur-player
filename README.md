@@ -1,5 +1,15 @@
 # Krumelur Player
 
+## Running
+
+### Query String Options
+
+Use these to override some of the default values:
+
+| Key                      | What         
+| ------------------------ | ---------------------------------------------------- |
+| `randomKrumelurDelayMax` | Maxmium ms after which a random krumelur will appear |
+
 ## Development
 Start msb-chamberlain server, then:
 ```sh
