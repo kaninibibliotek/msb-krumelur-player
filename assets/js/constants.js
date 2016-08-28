@@ -11,7 +11,7 @@ var constants = {
   URL_LATEST: '/api/krumelur/latest/',
   URL_RANDOM: '/api/krumelur/random/',
 
-  DEFAULT_BEHAVIOR: 'calm',
+  DEFAULT_BEHAVIOR: 'newton2',
 
   MASK_COLORS: {
     '100': 0xffffff,

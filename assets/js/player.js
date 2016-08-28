@@ -8,9 +8,7 @@ var player = (function() {
   var masterSpeed = 1;
   var masterSize  = 1;
 
-  // playist objectects: 
-  // {
-  var playlist = [];
+  var queue = [];
 
   masks.forEach(function(mask) {
     var color = constants.MASK_COLORS[mask.z];
@@ -28,7 +26,70 @@ var player = (function() {
 
   function start() {
     requestAnimationFrame(draw);
+
+    // Connect to server to listen for new krumelurs
+    var socket = io('http://localhost:3000');
+
+    socket.on('connect', function(){
+      console.log('Socket connected to Chamberlain. Listening for new krumelurs...');
+    });
+
+    socket.on('newKrumelur', function(krumelur) {
+      console.log('New krumelur:', krumelur); 
+      addKrumelur(krumelur.url, behaviorKeyToName(krumelur.behavior));
+    });
+
+    socket.on('disconnect', function(){
+      console.log('Disconnected from Chamberlain') 
+    });
+
+    //if (!locationUtils.isDev()) {
+
+      // Listen for new krumelurs
+
+    // Request new krumelurs at regular intervals
+    /*
+    setInterval(function() {
+      var amount = Math.max(0, constants.MAX_KRUMELURER - stage.getKrumelurer().length);
+
+      loader.requestActors(amount, onReceivedActor);
+    }, constants.REQUEST_INTERVAL);
+
+    // Add queued krumelur at reqular intervals
+    setInterval(function() {
+      if (queue.length > 0) {
+        stage.addKrumelur(queue.shift());
+      }
+    }, constants.ADD_INTERVAL);
+
+    loader.requestActors(constants.MAX_KRUMELURER, onReceivedActor);
+    */
+
+    function onReceivedActor(actor) {
+      queue.push(actor);
+    }
+
   }
+
+  // '001' ... '100' --> 'behaviorName'
+  function behaviorKeyToName(strKey) {
+    const key = parseInt(strKey);
+    
+    if (key < 20) {
+      return 'newton2';
+    } else if (key < 40) {
+      return 'newton3';
+    } else if (key < 60) {
+      return 'newton4';
+    } else if (key < 80) {
+      return 'newton5';
+    } else if (key < 100) {
+      return 'scaletestet';
+    } else {
+      return DEFAULT_BEHAVIOR; 
+    }
+  }
+
 
   function draw() {
     requestAnimationFrame(draw);
@@ -44,41 +105,17 @@ var player = (function() {
     renderer.render(stage);
   }
 
-  // TODO: Move to main() function 
-  if (locationUtils.isDev()) {
-    //addTestKrumelur();
-  } else {
-    // Request new krumelurs at regular intervals
-    setInterval(function() {
-      var amount = Math.max(0, constants.MAX_KRUMELURER - stage.getKrumelurer().length);
-
-      loader.requestActors(amount, onReceivedActor);
-    }, constants.REQUEST_INTERVAL);
-
-    // Add queued krumelur at reqular intervals
-    setInterval(function() {
-      if (playlist.length > 0) {
-        stage.addKrumelur(playlist.shift());
-      }
-    }, constants.ADD_INTERVAL);
-
-    loader.requestActors(constants.MAX_KRUMELURER, onReceivedActor);
-  }
-
-  function onReceivedActor(actor) {
-    playlist.push(actor);
-  }
 
   // Load from querystring ?dev&name=krumelur.png&behavior=crazy
   function addTestKrumelur() {
     var imageUrl = 'files/' + locationUtils.getQueryValue('name');
-    var behaviorKey = locationUtils.getQueryValue('behavior');
-    addKrumelur(imageUrl, behaviorKey);
+    var behaviorName = locationUtils.getQueryValue('behavior');
+    addKrumelur(imageUrl, behaviorName);
   }
 
-  function addKrumelur(imageUrl, behaviorKey) {
-    console.log('addKrumelur', imageUrl, behaviorKey); 
-    var behavior = window.behaviors[behaviorKey];
+  function addKrumelur(imageUrl, behaviorName) {
+    console.log('addKrumelur', imageUrl, behaviorName); 
+    var behavior = window.behaviors[behaviorName];
     loadKrumelur(imageUrl, behavior);
   }
 
