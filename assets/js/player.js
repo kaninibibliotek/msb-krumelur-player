@@ -43,6 +43,10 @@ var player = (function() {
       console.log('Disconnected from Chamberlain') 
     });
 
+    // Add a random krumelur every now and then
+    delayedAddKrumelur(1000);
+
+    
     //if (!locationUtils.isDev()) {
 
       // Listen for new krumelurs
@@ -68,7 +72,24 @@ var player = (function() {
     function onReceivedActor(actor) {
       queue.push(actor);
     }
+  }
 
+  function delayedAddKrumelur(delay=0) {
+    setTimeout(
+      addRandomKrumelur, 
+      delay,
+      () => {
+        const delay = 5000; 
+        delayedAddKrumelur(delay);
+      }
+    ) 
+  }
+
+  function addRandomKrumelur(callback) {
+    loader.requestActors(1, krumelur  => {
+      stage.addKrumelur(krumelur);
+      callback();
+    });
   }
 
   // '001' ... '100' --> 'behaviorName'
