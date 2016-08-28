@@ -8,19 +8,27 @@ var player = (function() {
   var masterSpeed = 1;
   var masterSize  = 1;
 
-  var queue = [];
+  // playist objectects: 
+  // {
+  var playlist = [];
 
   masks.forEach(function(mask) {
     var color = constants.MASK_COLORS[mask.z];
     stage.addMask(new Scenery(mask.vertices, mask.z, color, mask.name));
   });
 
+  /*
   effects.forEach(function(effectJson, i) {
     loader.loadEffect(effectJson, function(effect) {
       stage.addEffect(effect);
       console.log('Loaded effect:', effectJson.name, i+1, 'of', effects.length);
     });
   });
+  */
+
+  function start() {
+    requestAnimationFrame(draw);
+  }
 
   function draw() {
     requestAnimationFrame(draw);
@@ -49,8 +57,8 @@ var player = (function() {
 
     // Add queued krumelur at reqular intervals
     setInterval(function() {
-      if (queue.length > 0) {
-        stage.addKrumelur(queue.shift());
+      if (playlist.length > 0) {
+        stage.addKrumelur(playlist.shift());
       }
     }, constants.ADD_INTERVAL);
 
@@ -58,7 +66,7 @@ var player = (function() {
   }
 
   function onReceivedActor(actor) {
-    queue.push(actor);
+    playlist.push(actor);
   }
 
   // Load from querystring ?dev&name=krumelur.png&behavior=crazy
@@ -84,9 +92,10 @@ var player = (function() {
     }
   }
 
-  requestAnimationFrame(draw);
-
   return {
+    start: function() {
+      start(); 
+    },
     setSpeed: function(newSpeed) {
       masterSpeed = Math.max(0.1, Math.min(newSpeed, 2));
     },
@@ -184,4 +193,7 @@ var player = (function() {
       stage.clearKrumelurer();
     }
   };
+
+  // Kick everything off!
+  main();
 })();
