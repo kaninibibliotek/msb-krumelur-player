@@ -71,7 +71,7 @@ Stage.prototype.update = function(frameDelta, masterSize) {
   });
 
   // Dev stuff
-  if (locationUtils.isDev()) {
+  if (utils.isDev()) {
     if (this.dev.effectTrigger < 100) {
       var effectToTrigger = this.effects.find(function(effect) {
         return effect.trigger === this.dev.effectTrigger; 

@@ -36,7 +36,7 @@ var player = (function() {
 
     socket.on('newKrumelur', function(krumelur) {
       console.log('New krumelur:', krumelur); 
-      addKrumelur(krumelur.url, behaviorKeyToName(krumelur.behavior));
+      addKrumelur(krumelur.url, utils.behaviorKeyToName(krumelur.behavior));
     });
 
     socket.on('disconnect', function(){
@@ -47,7 +47,7 @@ var player = (function() {
     delayedAddKrumelur(1000);
 
     
-    //if (!locationUtils.isDev()) {
+    //if (!utils.isDev()) {
 
       // Listen for new krumelurs
 
@@ -92,26 +92,6 @@ var player = (function() {
     });
   }
 
-  // '001' ... '100' --> 'behaviorName'
-  function behaviorKeyToName(strKey) {
-    const key = parseInt(strKey);
-    
-    if (key < 20) {
-      return 'newton2';
-    } else if (key < 40) {
-      return 'newton3';
-    } else if (key < 60) {
-      return 'newton4';
-    } else if (key < 80) {
-      return 'newton5';
-    } else if (key < 100) {
-      return 'scaletestet';
-    } else {
-      return DEFAULT_BEHAVIOR; 
-    }
-  }
-
-
   function draw() {
     requestAnimationFrame(draw);
 
@@ -129,8 +109,8 @@ var player = (function() {
 
   // Load from querystring ?dev&name=krumelur.png&behavior=crazy
   function addTestKrumelur() {
-    var imageUrl = 'files/' + locationUtils.getQueryValue('name');
-    var behaviorName = locationUtils.getQueryValue('behavior');
+    var imageUrl = 'files/' + utils.getQueryValue('name');
+    var behaviorName = utils.getQueryValue('behavior');
     addKrumelur(imageUrl, behaviorName);
   }
 

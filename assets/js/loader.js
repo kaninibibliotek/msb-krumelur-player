@@ -46,7 +46,8 @@ var loader = (function() {
 
           for (var i = 0; i < krumelurs.length; i++) {
             var url      = krumelurs[i].url;
-            var behavior = window.behaviors[krumelurs[i].behavior];
+            var behaviorKey = utils.behaviorKeyToName(krumelurs[i].behavior);
+            var behavior = window.behaviors[behaviorKey];
 
             if (!behavior) {
               behavior = window.behaviors[constants.DEFAULT_BEHAVIOR];
