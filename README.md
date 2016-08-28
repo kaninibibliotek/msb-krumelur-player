@@ -7,9 +7,10 @@
 Use these to override some of the default values:
 
 | Key                      | What         
-| :----------------------- | :--------------------------------------------------- |
-| `randomKrumelurDelayMax` | Maxmium ms after which a random krumelur will appear |
-| `newKrumelurDelay`       | Ms after which a newly posted krumelur will appear   |
+| :----------------------- | :-------------------------------------------------------- |
+| `randomKrumelurDelayMax` | Maxmium ms after which a random krumelur will appear      |
+| `newKrumelurDelay`       | Ms after which a newly posted krumelur will appear        |
+| `noEffects`              | Disables all effects = faster startup time = good for dev |
 
 ## Development
 Start msb-chamberlain server, then:
