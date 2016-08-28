@@ -45,33 +45,6 @@ var player = (function() {
 
     // Add a random krumelur every now and then
     delayedAddKrumelur(1000);
-
-    
-    //if (!utils.isDev()) {
-
-      // Listen for new krumelurs
-
-    // Request new krumelurs at regular intervals
-    /*
-    setInterval(function() {
-      var amount = Math.max(0, constants.MAX_KRUMELURER - stage.getKrumelurer().length);
-
-      loader.requestActors(amount, onReceivedActor);
-    }, constants.REQUEST_INTERVAL);
-
-    // Add queued krumelur at reqular intervals
-    setInterval(function() {
-      if (queue.length > 0) {
-        stage.addKrumelur(queue.shift());
-      }
-    }, constants.ADD_INTERVAL);
-
-    loader.requestActors(constants.MAX_KRUMELURER, onReceivedActor);
-    */
-
-    function onReceivedActor(actor) {
-      queue.push(actor);
-    }
   }
 
   function delayedAddKrumelur(delay=0) {
@@ -79,7 +52,7 @@ var player = (function() {
       addRandomKrumelur, 
       delay,
       () => {
-        const delay = 5000; 
+        const delay = utils.getRandomInt(0, constants.RANDOM_KRUMELUR_DELAY_MAX);
         delayedAddKrumelur(delay);
       }
     ) 

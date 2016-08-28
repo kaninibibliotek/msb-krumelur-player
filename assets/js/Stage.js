@@ -14,7 +14,6 @@ function Stage() {
 Stage.prototype = Object.create(PIXI.Container.prototype);
 
 Stage.prototype.addKrumelur = function(krumelur) {
-  console.log('stage.addKrumelur', krumelur);
   this.krumelurer.push(krumelur);
 
   this.addChild(krumelur);

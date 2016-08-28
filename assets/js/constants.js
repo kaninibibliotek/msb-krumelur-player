@@ -13,6 +13,9 @@ var constants = {
 
   DEFAULT_BEHAVIOR: 'newton2',
 
+  // Maxmium ms after which a random krumelur will appear
+  RANDOM_KRUMELUR_DELAY_MAX: 60 * 1000, 
+
   MASK_COLORS: {
     '100': 0xffffff,
     '90': 0x8000ff,
