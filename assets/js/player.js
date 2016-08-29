@@ -56,7 +56,7 @@ var player = (function() {
     delayedAddKrumelur(1000);
   }
 
-  function delayedAddKrumelur(delay=0) {
+  function delayedAddKrumelur(delay) {
     setTimeout(
       addRandomKrumelur, 
       delay,
