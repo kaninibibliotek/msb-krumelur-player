@@ -13,8 +13,6 @@ var constants = {
   URL_LATEST: '/api/krumelur/latest/',
   URL_RANDOM: '/api/krumelur/random/',
 
-  DEFAULT_BEHAVIOR: 'newton2',
-
   // Ms after which a newly posted krumelur will appear
   // Gives the kids some time to run from machine to wall
   NEW_KRUMELUR_DELAY: 5 * 1000, 

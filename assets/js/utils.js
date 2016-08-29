@@ -32,17 +32,18 @@ var utils = (function() {
       const key = parseInt(strKey);
       
       if (key < 20) {
-        return 'newton2';
+        return 'walkaround_01';
       } else if (key < 40) {
-        return 'newton3';
+        return 'walkaround_01';
       } else if (key < 60) {
-        return 'newton4';
+        return 'walkaround_01';
       } else if (key < 80) {
-        return 'newton5';
+        return 'walkaround_02';
       } else if (key < 100) {
-        return 'scaletestet';
+        return 'walkaround_02';
       } else {
-        return DEFAULT_BEHAVIOR; 
+        // Default behavior
+        return 'walkaround_01';
       }
     },
 
