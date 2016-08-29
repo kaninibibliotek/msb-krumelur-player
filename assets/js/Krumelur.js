@@ -19,10 +19,6 @@ function Krumelur(texture, animation) {
   this.done = false;
 }
 
-var  test = {x: 1, y: 2} ;
-var {x} = test;
-console.log('testo', x)
-
 Krumelur.prototype = Object.create(PIXI.Sprite.prototype);
 
 Krumelur.prototype.update = function(frameDelta, size) {
