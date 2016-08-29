@@ -28,10 +28,11 @@ var player = (function() {
     requestAnimationFrame(draw);
 
     // Connect to server to listen for new krumelurs
-    var socket = io('http://localhost:3000');
+    var socketUrl = utils.isLocal ? 'http://localhost:3000' : constants.CHAMBERLAIN_URL;
+    var socket = io(socketUrl);
 
     socket.on('connect', function(){
-      console.log('Socket connected to Chamberlain. Listening for new krumelurs...');
+      console.log(`Socket connected to ${socketUrl}. Listening for new krumelurs...`);
     });
 
     socket.on('newKrumelur', function(krumelur) {

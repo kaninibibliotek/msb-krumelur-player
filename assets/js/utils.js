@@ -6,6 +6,10 @@ var utils = (function() {
       return dev;
     },
 
+    isLocal: function() {
+      return window.env === 'development'; 
+    },
+
     getQueryValue: function(field) {
       var query = window.location.search.substring(4);
       var index = query.indexOf(field);
