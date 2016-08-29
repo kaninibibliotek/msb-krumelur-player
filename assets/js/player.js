@@ -6,7 +6,7 @@ var player = (function() {
   var testMaskVertices = [];
 
   var masterSpeed = 1;
-  var masterSize  = 1;
+  var masterSize  = .1;
 
   var queue = [];
 
@@ -28,7 +28,7 @@ var player = (function() {
     requestAnimationFrame(draw);
 
     // Connect to server to listen for new krumelurs
-    var socketUrl = utils.isLocal ? 'http://localhost:3000' : constants.CHAMBERLAIN_URL;
+    var socketUrl = utils.isLocal() ? 'http://localhost:3000' : constants.CHAMBERLAIN_URL;
     var socket = io(socketUrl);
 
     socket.on('connect', function(){
