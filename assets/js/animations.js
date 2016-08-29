@@ -30,6 +30,7 @@ var animationPositionAtFrame = function(animation, index, frame) {
 
 var animationScaleAtFrame = function(animation, index, frame) {
   var current = animation.scales[index];
+  console.log('current.x', current.x);
   var next    = animation.scales[index + 1];
 
   if (!next) {
