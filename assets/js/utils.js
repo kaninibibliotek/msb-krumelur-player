@@ -1,32 +1,25 @@
 var utils = (function() {
-  var dev = window.location.search.startsWith('?dev');
 
-  return {
+  var api = {
     isDev: function() {
-      return dev;
+      return isDev;
     },
 
     isLocal: function() {
       return window.env === 'development'; 
     },
+    getQueryValue: function(name) {
+      var matches = (new RegExp('[?&;]' + name + '=*([^&;#]*)')).exec(document.URL);
 
-    getQueryValue: function(field) {
-      var query = window.location.search.substring(4);
-      var index = query.indexOf(field);
-
-      if (index === -1) {
-        return null;
+      if (matches) {
+        var match = decodeURI(matches[1]);
+        // '?foo' return true, "?foo=bar' returns 'bar'
+        return match === '' ? true : match; 
+      } else {
+        return null; 
       }
 
-      var next = query.substring(index).indexOf('&');
-
-      if (next === -1) {
-        next = query.length;
-      }
-
-      return query.substring(index + field.length + 1, next + 1);
     },
-
     // '001' ... '100' --> 'behaviorName'
     behaviorKeyToName: function(strKey) {
       const key = parseInt(strKey);
@@ -51,4 +44,8 @@ var utils = (function() {
       return Math.floor(Math.random() * (max - min)) + min;
     }
   };
+
+  var isDev = !!api.getQueryValue('dev');
+
+  return api;
 })();
