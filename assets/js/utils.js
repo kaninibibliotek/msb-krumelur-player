@@ -18,7 +18,6 @@ var utils = (function() {
       } else {
         return null; 
       }
-
     },
     // '001' ... '100' --> 'behaviorName'
     behaviorKeyToName: function(strKey) {
