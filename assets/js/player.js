@@ -53,7 +53,7 @@ var player = (function() {
     });
 
     // Add a random krumelur every now and then
-    delayedAddKrumelur(1000);
+    //delayedAddKrumelur(1000);
   }
 
   function delayedAddKrumelur(delay) {

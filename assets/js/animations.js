@@ -28,6 +28,23 @@ var animationPositionAtFrame = function(animation, index, frame) {
   };
 };
 
+var animationAnchorAtFrame = function(animation, index, frame) {
+  var current = animation.anchors[index];
+  var next    = animation.anchors[index + 1];
+
+  if (!next) {
+    return {
+      x: current.x,
+      y: current.y
+    };
+  }
+
+  return {
+    x: lerp(current.frame, current.x, next.frame, next.x, frame),
+    y: lerp(current.frame, current.y, next.frame, next.y, frame),
+  };
+};
+
 var animationScaleAtFrame = function(animation, index, frame) {
   var current = animation.scales[index];
   var next    = animation.scales[index + 1];

@@ -7,6 +7,7 @@ function Krumelur(texture, animation) {
 
   this.positionIdx = 0;
   this.scaleIdx    = 0;
+  this.anchorIdx    = 0;
   this.rotationIdx = 0;
   this.opacityIdx  = 0;
 
@@ -29,15 +30,19 @@ Krumelur.prototype.update = function(frameDelta, size) {
   var scaleX = size * scales.x / 100;
   var scaleY = size * scales.y / 100;
   var rotation = animationRotationAtFrame(this.animation, this.rotationIdx, this.frame);
+  var anchors = animationAnchorAtFrame(this.animation, this.anchorIdx, this.frame);
 
   this.opacity = animationOpacityAtFrame(this.animation, this.opacityIdx, this.frame);
 
   this.position.set(position.x, position.y);
+
   this.zIndex = position.z;
 
   this.scale.set(scaleX, scaleY);
 
   this.rotation = rotation / 180 * Math.PI;
+
+  this.pivot.set(anchors.x, anchors.y);
 
   if (this.frame >= this.animation.duration) {
     this.done = true;
@@ -49,6 +54,7 @@ Krumelur.prototype.update = function(frameDelta, size) {
 Krumelur.prototype.updateAnimationIndices = function() {
   this.positionIdx = getNextAnimationIndex(this.animation, 'positions', this.frame, this.positionIdx);
   this.scaleIdx    = getNextAnimationIndex(this.animation, 'scales', this.frame, this.scaleIdx);
+  this.anchorIdx   = getNextAnimationIndex(this.animation, 'anchors', this.frame, this.scaleIdx);
   this.rotationIdx = getNextAnimationIndex(this.animation, 'rotations', this.frame, this.rotationIdx);
   this.opacityIdx  = getNextAnimationIndex(this.animation, 'opacities', this.frame, this.opacityIdx);
 };
