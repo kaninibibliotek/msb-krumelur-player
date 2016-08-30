@@ -51,9 +51,11 @@ var player = (function() {
     socket.on('disconnect', function(){
       console.log('Disconnected from Chamberlain') 
     });
-
-    // Add a random krumelur every now and then
-    //delayedAddKrumelur(1000);
+    
+    if (!utils.isDev()) {
+      // Add a random krumelur every now and then
+      delayedAddKrumelur(1000);
+    }
   }
 
   function delayedAddKrumelur(delay) {
