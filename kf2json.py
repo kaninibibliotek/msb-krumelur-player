@@ -75,7 +75,8 @@ def convert(inp, outp, targetFps):
             "positions": getKeyframes(text, "Transform\s+Position", ["frame", "x", "y", "z"]),
             "scales":    getKeyframes(text, "Transform\s+Scale", ["frame", "x", "y"], 100),
             "rotations": getKeyframes(text, "Transform\s+Rotation", ["frame", "rotation"]),
-            "opacities": getKeyframes(text, "Transform\s+Opacity", ["frame", "opacity"])
+            "opacities": getKeyframes(text, "Transform\s+Opacity", ["frame", "opacity"]),
+            "anchors":   getKeyframes(text, "Transform\s+Anchor Point", ["frame", "x", "y"])
         }
     except Exception, e:
         print e
