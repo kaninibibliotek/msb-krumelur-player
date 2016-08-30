@@ -34,13 +34,13 @@ var utils = (function() {
       if (key < 20) {
         return 'walkaround_01';
       } else if (key < 40) {
-        return 'walkaround_01';
+        return 'walkaround_02';
       } else if (key < 60) {
-        return 'walkaround_01';
+        return 'walkaround_03';
       } else if (key < 80) {
-        return 'walkaround_02';
+        return 'walkaround_04';
       } else if (key < 100) {
-        return 'walkaround_02';
+        return 'walkaround_01';
       } else {
         // Default behavior
         return 'walkaround_01';
